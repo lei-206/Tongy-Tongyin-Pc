@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>“童语同音”学前儿童普通话师资培训 - 报名</title>
+    <script type="module" src="/style/main.js"></script>
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="page-header">
+            <img src="style/img/big-title.png" alt="“童语同音”学前儿童普通话师资培训" class="page-title-img">
+        </header>
+
+        <main class="register-main">
+            <div class="register-card">
+                <h2 class="step-title" id="stepTitle">第一步：填写基本信息</h2>
+
+                <!-- 步骤1：填写基本信息 -->
+                <section class="step-content active" id="step1">
+                    <form class="register-form" id="formStep1" novalidate>
+                        <div class="form-row">
+                            <label class="form-label" for="name"><span class="required">*</span>姓名</label>
+                            <div class="form-field">
+                                <input type="text" id="name" name="name" placeholder="请填写与身份证上一致的汉字姓名" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label class="form-label"><span class="required">*</span>所属区域</label>
+                            <div class="form-field region-fields">
+                                <select name="province" required>
+                                    <option value="">省</option>
+                                    <option value="北京市">北京市</option>
+                                    <option value="上海市">上海市</option>
+                                    <option value="广东省">广东省</option>
+                                </select>
+                                <select name="city" required>
+                                    <option value="">市</option>
+                                </select>
+                                <select name="district" required>
+                                    <option value="">区县</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label class="form-label" for="school"><span class="required">*</span>所在学校</label>
+                            <div class="form-field">
+                                <input type="text" id="school" name="school" placeholder="请填写完整学校名称" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label class="form-label" for="idCard"><span class="required">*</span>身份证号</label>
+                            <div class="form-field">
+                                <input type="text" id="idCard" name="idCard" maxlength="18" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label class="form-label" for="mobile"><span class="required">*</span>手机号</label>
+                            <div class="form-field">
+                                <input type="tel" id="mobile" name="mobile" maxlength="11" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label class="form-label" for="smsCode"><span class="required">*</span>短信验证码</label>
+                            <div class="form-field sms-field">
+                                <input type="text" id="smsCode" name="smsCode" maxlength="6" required>
+                                <button type="button" class="btn-sms" id="btnSms">获取验证码</button>
+                            </div>
+                        </div>
+                        <div class="form-row form-actions">
+                            <button type="submit" class="btn-primary">下一步</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- 步骤2：获取账号信息 -->
+                <section class="step-content" id="step2">
+                    <div class="account-info">
+                        <p class="info-tip">您的专属电脑端学习账号信息如下：</p>
+                        <div class="info-box">
+                            <p><strong>您的账号：</strong><span class="info-value">18612312312</span></p>
+                            <p><strong>您的密码：</strong><span class="info-value">xxxxxx</span><span class="info-note">（系统预置的统一初始密码）</span></p>
+                        </div>
+                        <div class="warning-box">
+                            <div class="warning-icon">!</div>
+                            <p>请务必妥善保存您的账号密码</p>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-primary" data-step="3">下一步</button>
+                    </div>
+                </section>
+
+                <!-- 步骤3：绑定微信号 -->
+                <section class="step-content" id="step3">
+                    <div class="wechat-bind">
+                        <p class="wechat-tip">请使用<span class="highlight">您本人常用</span>微信扫描下方二维码</p>
+                        <div class="qr-placeholder">
+                            <span>公众号授权二维码</span>
+                        </div>
+                        <p class="wechat-desc">扫描绑定后，可自由切换微信和电脑学习课程</p>
+                    </div>
+
+                </section>
+
+                <!-- 步骤4：选择课程班级 -->
+                <section class="step-content" id="step4">
+                    <div class="class-notice">
+                        <span class="notice-icon">i</span>
+                        <p>仅显示您所在省份可报名的班级，各期次/班级课程内容相同，请按您自己的时间安排，选择其中一个班级即可</p>
+                    </div>
+                    <h3 class="section-subtitle">点击下方图片选择一个期次</h3>
+                    <div class="period-list">
+                        <div class="period-card" data-period="1">
+                            <div class="period-thumb"><img src="style/img/p01.jpg" alt="第一期"></div>
+                            <p class="period-name">第一期</p>
+                            <p class="period-date">yyyy-mm-dd至yyyy-mm-dd</p>
+                        </div>
+                        <div class="period-card active" data-period="3">
+                            <div class="period-thumb"><img src="style/img/p01.jpg" alt="第三期"></div>
+                            <p class="period-name">第三期</p>
+                            <p class="period-date">yyyy-mm-dd至yyyy-mm-dd</p>
+                        </div>
+                        <div class="period-card" data-period="4">
+                            <div class="period-thumb"><img src="style/img/p01.jpg" alt="第四期"></div>
+                            <p class="period-name">第四期</p>
+                            <p class="period-date">yyyy-mm-dd至yyyy-mm-dd</p>
+                        </div>
+                    </div>
+                    <table class="class-table">
+                        <thead>
+                            <tr>
+                                <th>班级</th>
+                                <th>开课时间</th>
+                                <th>已报人数</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>一班</td>
+                                <td>yyyy-mm-dd至yyyy-mm-dd</td>
+                                <td>480/480</td>
+                                <td><span class="status-full">名额已满</span></td>
+                            </tr>
+                            <tr>
+                                <td>二班</td>
+                                <td>yyyy-mm-dd至yyyy-mm-dd</td>
+                                <td>0/480</td>
+                                <td><button type="button" class="btn-table" data-step="5">我要报名</button></td>
+                            </tr>
+                            <tr>
+                                <td>三班</td>
+                                <td>yyyy-mm-dd至yyyy-mm-dd</td>
+                                <td>125/480</td>
+                                <td><button type="button" class="btn-table" data-step="5">我要报名</button></td>
+                            </tr>
+                            <tr>
+                                <td>五班</td>
+                                <td>yyyy-mm-dd至yyyy-mm-dd</td>
+                                <td>352/480</td>
+                                <td><button type="button" class="btn-table" data-step="5">我要报名</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- 步骤5：添加班主任 -->
+                <section class="step-content" id="step5">
+                    <div class="teacher-qrcode">
+                        <p class="teacher-qrcode-tip">请使用微信扫描下方二维码添加班主任</p>
+                        <div class="teacher-qrcode-img">
+                            <div class="qrcode-placeholder large">
+                                <span>班主任二维码</span>
+                            </div>
+                        </div>
+                        <div class="teacher-qrcode-warning">
+                            <div class="warning-icon">!</div>
+                            <p>请及时添加班主任微信，以免错过重要学习内容</p>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-primary" data-step="6">下一步</button>
+                    </div>
+                </section>
+
+                <!-- 步骤6：完成报名 -->
+                <section class="step-content" id="step6">
+                    <div class="enroll-result">
+                        <div class="result-cover">
+                            <img src="style/img/p01.jpg" alt="期次封面图">
+                        </div>
+                        <div class="result-info">
+                            <h3 class="result-title">“童语同音”学前儿童普通话师资培训 <span class="result-class">| xx期 xx班</span></h3>
+                            <div class="result-meta">
+                                <span>开课时间：yyyy-mm-dd</span>
+                                <span>结课时间：yyyy-mm-dd</span>
+                            </div>
+                            <div class="result-qrcode-list">
+                                <div class="result-qrcode-item">
+                                    <div class="qrcode-img">
+                                        <div class="qrcode-placeholder small">
+                                            <span>二维码</span>
+                                        </div>
+                                    </div>
+                                    <p>微信扫码添加班主任微信</p>
+                                </div>
+                                <div class="result-qrcode-item">
+                                    <div class="qrcode-img">
+                                        <div class="qrcode-placeholder small">
+                                            <span>二维码</span>
+                                        </div>
+                                    </div>
+                                    <p>关注<br>“泛在云课堂”微信公众号<br>使用手机同步学习</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 步骤条 -->
+                <nav class="stepper" aria-label="报名步骤">
+                    <div class="stepper-line"></div>
+                    <div class="stepper-item active" data-step="1">
+                        <div class="stepper-circle">1</div>
+                        <span class="stepper-label">填写基本信息</span>
+                    </div>
+                    <div class="stepper-item" data-step="2">
+                        <div class="stepper-circle">2</div>
+                        <span class="stepper-label">获取账号信息</span>
+                    </div>
+                    <div class="stepper-item" data-step="3">
+                        <div class="stepper-circle">3</div>
+                        <span class="stepper-label">绑定微信号</span>
+                    </div>
+                    <div class="stepper-item" data-step="4">
+                        <div class="stepper-circle">4</div>
+                        <span class="stepper-label">选择课程班级</span>
+                    </div>
+                    <div class="stepper-item" data-step="5">
+                        <div class="stepper-circle">5</div>
+                        <span class="stepper-label">添加班主任</span>
+                    </div>
+                    <div class="stepper-item" data-step="6">
+                        <div class="stepper-circle">6</div>
+                        <span class="stepper-label">完成报名</span>
+                    </div>
+                </nav>
+            </div>
+        </main>
+
+        <footer class="page-footer">
+            <p>网络教育数字化学习资源中心 版权所有</p>
+            <p>技术支持：国开泛在（北京）教育科技有限公司</p>
+            <p>ICP备xxxxxxxx号 公安网备xxxxxx号</p>
+        </footer>
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "tongyu-register",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "jquery": "^4.0.0",
+    "sass": "^1.103.1",
+    "vite": "^5.4.21"
+  },
+  "dependencies": {
+    "sweetalert2": "^11.26.25"
+  }
+}
