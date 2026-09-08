@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>“童语同音”学前儿童普通话师资培训 - 课程学习</title>
+    <script type="module" src="/style/main.js"></script>
+</head>
+<body class="course-page-body">
+    <div class="page-wrapper">
+        <!-- 顶部标题 -->
+        <header class="page-header course-header-title">
+            <img src="style/img/big-title.png" alt="“童语同音”学前儿童普通话师资培训" class="page-title-img">
+
+            <!-- 右上角“我的”用户菜单 -->
+            <div class="user-header-menu-wrap" id="userHeaderMenuWrap">
+                <button type="button" class="user-menu-pill" id="userMenuBtn" aria-expanded="false" aria-haspopup="true">
+                    <span class="user-pill-name">您好，张三</span>
+                    <span class="user-pill-arrow">
+                        <i data-lucide="chevron-down" class="pill-arrow-icon"></i>
+                    </span>
+                </button>
+                <div class="user-dropdown-menu" id="userDropdownMenu">
+                    <a href="my-courses.html" class="menu-item" id="menuItemMyCourse">
+                        <i data-lucide="book-open" class="menu-item-icon"></i>
+                        <span>我的课程</span>
+                    </a>
+                    <a href="javascript:void(0);" class="menu-item" id="menuItemChangePwd">
+                        <i data-lucide="user" class="menu-item-icon"></i>
+                        <span>修改密码</span>
+                    </a>
+                    <a href="javascript:void(0);" class="menu-item menu-item-logout" id="menuItemLogout">
+                        <i data-lucide="log-out" class="menu-item-icon"></i>
+                        <span>退出登录</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- 主内容区 -->
+        <main class="course-main-layout">
+            <!-- 左侧边栏 -->
+            <aside class="course-sidebar">
+                <!-- 学习计划卡片 -->
+                <div class="plan-card">
+                    <!-- 卡片头部背景条 -->
+                    <div class="plan-header">
+                        <div class="plan-header-info">
+                            <div class="plan-title">02期6班 学习计划表</div>
+                            <div class="plan-time">培训时间: yyyy-mm-dd 至 yyyy-mm-dd</div>
+                        </div>
+                        <div class="plan-header-btns">
+                            <a href="handbook.pdf" target="_blank" class="plan-pill-btn" id="btnHandbook">学习手册</a>
+                            <a href="faq.pdf" target="_blank" class="plan-pill-btn" id="btnFaq">常见问题</a>
+                        </div>
+                    </div>
+
+                    <!-- 日历表格区 -->
+                    <div class="plan-calendar-section">
+                        <div class="calendar-grid-header">
+                            <span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span>
+                        </div>
+                        <div class="calendar-grid-body">
+                            <!-- 第1行: 3 ~ 9 -->
+                            <div class="cal-cell" data-day="3"><span class="cal-num">3</span></div>
+                            <div class="cal-cell" data-day="4"><span class="cal-num">4</span></div>
+                            <div class="cal-cell is-selected" data-day="5"><span class="cal-num">5</span></div>
+                            <div class="cal-cell is-done strip-start" data-day="6"><span class="cal-num">6</span></div>
+                            <div class="cal-cell is-done strip-mid" data-day="7"><span class="cal-num">7</span></div>
+                            <div class="cal-cell is-done strip-end" data-day="8" data-weekend="true"><span class="cal-num">8</span></div>
+                            <div class="cal-cell has-badge tag-playback" data-day="9" data-weekend="true"><span class="tag-badge">回放</span><span class="cal-num">9</span></div>
+                            
+                            <!-- 第2行: 10 ~ 16 -->
+                            <div class="cal-cell is-done strip-start" data-day="10"><span class="cal-num">10</span></div>
+                            <div class="cal-cell is-done strip-mid" data-day="11"><span class="cal-num">11</span></div>
+                            <div class="cal-cell is-done strip-end has-badge tag-playback" data-day="12"><span class="tag-badge">回放</span><span class="cal-num">12</span></div>
+                            <div class="cal-cell has-badge tag-live" data-day="13"><span class="tag-badge">直播</span><span class="cal-num">13</span></div>
+                            <div class="cal-cell" data-day="14"><span class="cal-num">14</span></div>
+                            <div class="cal-cell has-badge tag-live" data-day="15" data-weekend="true"><span class="tag-badge">直播</span><span class="cal-num">15</span></div>
+                            <div class="cal-cell" data-day="16" data-weekend="true"><span class="cal-num">16</span></div>
+
+                            <!-- 第3行: 17 ~ 23 -->
+                            <div class="cal-cell" data-day="17"><span class="cal-num">17</span></div>
+                            <div class="cal-cell" data-day="18"><span class="cal-num">18</span></div>
+                            <div class="cal-cell" data-day="19"><span class="cal-num">19</span></div>
+                            <div class="cal-cell has-badge tag-live" data-day="20"><span class="tag-badge">直播</span><span class="cal-num">20</span></div>
+                            <div class="cal-cell" data-day="21"><span class="cal-num">21</span></div>
+                            <div class="cal-cell" data-day="22" data-weekend="true"><span class="cal-num">22</span></div>
+                            <div class="cal-cell" data-day="23" data-weekend="true"><span class="cal-num">23</span></div>
+
+                            <!-- 第4行: 24 ~ 30 -->
+                            <div class="cal-cell" data-day="24"><span class="cal-num">24</span></div>
+                            <div class="cal-cell" data-day="25"><span class="cal-num">25</span></div>
+                            <div class="cal-cell" data-day="26"><span class="cal-num">26</span></div>
+                            <div class="cal-cell" data-day="27"><span class="cal-num">27</span></div>
+                            <div class="cal-cell" data-day="28"><span class="cal-num">28</span></div>
+                            <div class="cal-cell" data-day="29" data-weekend="true"><span class="cal-num">29</span></div>
+                            <div class="cal-cell" data-day="30" data-weekend="true"><span class="cal-num">30</span></div>
+                        </div>
+
+                        <!-- 图例 -->
+                        <div class="calendar-legend">
+                            <div class="legend-item">
+                                <span class="legend-dot green"></span>
+                                <span>当日视频全部看完</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot orange"></span>
+                                <span>当前选中的日期</span>
+                            </div>
+                        </div>
+
+                        <!-- 任务按钮 (作业 & 终测) -->
+                        <div class="plan-tasks">
+                            <div class="task-btn" id="taskHomework" role="button" tabindex="0">
+                                <img src="style/img/icon-Homework.png" alt="培训作业" class="task-icon">
+                                <span class="task-title">作&emsp;&emsp;&emsp;业</span>
+                                <span class="badge-status-orange">1个未完成</span>
+                            </div>
+                            <div class="task-btn" id="taskTest" role="button" tabindex="0">
+                                <img src="style/img/icon-PutonghuaFinalTest.png" alt="普通话终测" class="task-icon">
+                                <span class="task-title">普通话终测</span>
+                                <span class="badge-status-orange">未完成</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 专题 Banner -->
+                <div class="topic-banner">
+                    <a href="javascript:void(0);" id="btnTopicBanner">
+                        <img src="style/img/banner-sm01.jpg" alt="新思想专题" class="banner-img">
+                    </a>
+                </div>
+
+                <!-- 通知与公告卡片 -->
+                <div class="sidebar-notice-card">
+                    <div class="notice-btn" id="btnNoticeList" role="button" tabindex="0">
+                        <img src="style/img/icon-inform.png" alt="通知公告" class="notice-icon">
+                        <span class="notice-title">通知公告<span class="red-badge-dot"></span></span>
+                    </div>
+                    <div class="notice-btn" id="btnPersonalNotice" role="button" tabindex="0">
+                        <img src="style/img/icon-personal-inform.png" alt="个人公告" class="notice-icon">
+                        <span class="notice-title">个人公告</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- 右侧区域 -->
+            <div class="course-right-wrap">
+                <!-- 当日有直播卡片 -->
+                <section class="daily-live-card" id="dailyLiveCard" style="display: none;" aria-label="当日有直播">
+                    <div class="live-card-header">
+                        <div class="live-header-title">
+                            <img src="style/img/icon-live.png" alt="LIVE" class="live-title-icon">
+                            <span id="liveCardTitleText">当日有直播</span>
+                        </div>
+                        <button type="button" class="live-collapse-btn" id="btnLiveCollapse">
+                            <img src="style/img/icon-collapse.png" alt="" class="collapse-icon">
+                            <span class="collapse-text">折叠</span>
+                        </button>
+                    </div>
+                    <div class="live-card-body active-body" id="liveCardBody">
+                        <!-- 直播项 1 -->
+                        <div class="live-item">
+                            <h3 class="live-item-title">资源名称资源名称资源名称</h3>
+                            <div class="live-meta-box">
+                                <div class="live-meta-row">直播起止时间: yyyy-mm-dd hh:mm:ss 至 yyyy-mm-dd hh:mm:ss</div>
+                                <div class="live-meta-row">直播地址: <a href="https://xxxxxxxxxxxxxxxxx" target="_blank" class="live-link">https://xxxxxxxxxxxxxxxxx</a></div>
+                            </div>
+                            <div class="live-item-desc">
+                                自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容。
+                            </div>
+                        </div>
+                        <!-- 分割线 -->
+                        <div class="live-item-divider"></div>
+                        <!-- 直播项 2 -->
+                        <div class="live-item">
+                            <h3 class="live-item-title">资源名称资源名称资源名称</h3>
+                            <div class="live-meta-box">
+                                <div class="live-meta-row">直播起止时间: yyyy-mm-dd hh:mm:ss 至 yyyy-mm-dd hh:mm:ss</div>
+                                <div class="live-meta-row">直播地址: <a href="https://xxxxxxxxxxxxxxxxx" target="_blank" class="live-link">https://xxxxxxxxxxxxxxxxx</a></div>
+                            </div>
+                            <div class="live-item-desc">
+                                自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容。
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 回放内容列表（点击回放日期时显示） -->
+                    <div class="live-card-body playback-card-body" id="playbackCardBody" style="display: none;">
+                        <!-- 回放项 1 -->
+                        <div class="live-item">
+                            <div class="playback-item-header">
+                                <h3 class="live-item-title">名称xxxxxxxxx</h3>
+                                <span class="playback-status">已结束，可回放</span>
+                            </div>
+                            <div class="live-meta-box">
+                                <div class="live-meta-row">回放地址: <a href="https://xxxxxxxxxxxxxxxxx" target="_blank" class="live-link">https://xxxxxxxxxxxxxxxxx</a></div>
+                            </div>
+                            <div class="live-item-desc">
+                                说明: 自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容。
+                            </div>
+                        </div>
+                        <!-- 分割线 -->
+                        <div class="live-item-divider"></div>
+                        <!-- 回放项 2 -->
+                        <div class="live-item">
+                            <div class="playback-item-header">
+                                <h3 class="live-item-title">名称xxxxxxxxx</h3>
+                                <span class="playback-status">已结束，可回放</span>
+                            </div>
+                            <div class="live-meta-box">
+                                <div class="live-meta-row">回放地址: <a href="https://xxxxxxxxxxxxxxxxx" target="_blank" class="live-link">https://xxxxxxxxxxxxxxxxx</a></div>
+                            </div>
+                            <div class="live-item-desc">
+                                说明: 自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容。
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 周末有直播时：当日没有其他学习内容卡片 -->
+                <section class="course-empty-content" id="emptyLearningCard" style="display: none;" aria-label="当日没有其他学习内容">
+                    <div class="empty-content-box">
+                        <i data-lucide="info" class="empty-lucide-icon"></i>
+                        <h2 class="empty-content-title">当日没有其他学习内容</h2>
+                    </div>
+                </section>
+
+                <!-- 右侧学习区域 -->
+                <section class="course-main-content" id="courseMainContent">
+                    <!-- 5个分类Tab -->
+                    <div class="resource-categories">
+                        <div class="category-item active" data-type="video" role="button">
+                            <div class="cate-status-badge badge-green">已完成</div>
+                            <img src="style/img/icon-zy-cate01.png" alt="教学视频" class="cate-icon">
+                            <div class="cate-text">教学视频</div>
+                        </div>
+                        <div class="category-item" data-type="language" role="button">
+                            <div class="cate-status-badge badge-green">已完成</div>
+                            <img src="style/img/icon-zy-cate02.png" alt="语言素养" class="cate-icon">
+                            <div class="cate-text">语言素养</div>
+                        </div>
+                        <div class="category-item" data-type="teaching" role="button">
+                            <div class="cate-status-badge badge-orange">未完成</div>
+                            <img src="style/img/icon-zy-cate03.png" alt="教学能力" class="cate-icon">
+                            <div class="cate-text">教学能力</div>
+                        </div>
+                        <div class="category-item" data-type="development" role="button">
+                            <div class="cate-status-badge badge-orange">未完成</div>
+                            <img src="style/img/icon-zy-cate04.png" alt="专业发展" class="cate-icon">
+                            <div class="cate-text">专业发展</div>
+                        </div>
+                        <div class="category-item" data-type="support" role="button">
+                            <div class="cate-status-badge badge-orange">未完成</div>
+                            <img src="style/img/icon-zy-cate05.png" alt="资源保障" class="cate-icon">
+                            <div class="cate-text">资源保障</div>
+                        </div>
+                    </div>
+
+                    <!-- 学习内容面板 -->
+                    <div class="course-article-card" id="courseArticleCard">
+                        <!-- 专业发展选学AI推荐提示 -->
+                        <div class="elective-ai-tip" id="electiveAiTip" style="display: none;">
+                            <i data-lucide="info" class="elective-tip-icon"></i>
+                            <span class="elective-tip-text">本板块为选学，资源基于AI智能推荐</span>
+                        </div>
+
+                        <h2 class="resource-heading" id="currentResourceTitle">资源名称资源名称资源名称</h2>
+
+                        <!-- 视频区域 -->
+                        <div class="video-container" id="videoBox">
+                            <video id="studyVideo" src="style/img/v.mp4" poster="style/img/p01.jpg" preload="metadata" playsinline></video>
+                            <div class="video-overlay-play" id="videoOverlayPlay">
+                                <div class="play-triangle"></div>
+                            </div>
+                            <div class="video-custom-controls" id="customControls">
+                                <button type="button" class="ctrl-btn" id="ctrlPlayBtn" aria-label="播放/暂停">
+                                    <span class="ctrl-icon-play">▶</span>
+                                    <span class="ctrl-icon-pause" style="display:none;">❚❚</span>
+                                </button>
+                                <span class="ctrl-time" id="ctrlCurrentTime">00:00</span>
+                                <div class="ctrl-progress-bar" id="ctrlProgressBar">
+                                    <div class="ctrl-progress-fill" id="ctrlProgressFill" style="width: 0%;"></div>
+                                    <div class="ctrl-progress-thumb" id="ctrlProgressThumb" style="left: 0%;"></div>
+                                </div>
+                                <span class="ctrl-time" id="ctrlTotalTime">00:35</span>
+                                <button type="button" class="ctrl-btn" id="ctrlMuteBtn" aria-label="声音">
+                                    <svg class="vol-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+                                    </svg>
+                                </button>
+                                <button type="button" class="ctrl-btn" id="ctrlFullscreenBtn" aria-label="全屏">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 提示已完成 -->
+                        <div class="study-completion-tip">
+                            <img src="style/img/icon-tip.png" alt="提示图标" class="tip-icon-img">
+                            <span class="tip-text-content">提示： 本视频已完成学习</span>
+                        </div>
+
+                        <!-- 富文本内容 -->
+                        <div class="rich-text-container">
+                            <p>自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容。</p>
+                            <p>自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容。</p>
+                        </div>
+                    </div>
+
+                    <!-- 资源保障专属内容面板 -->
+                    <div class="support-resource-card" id="supportResourceCard" style="display: none;">
+                        <!-- 选学提示 -->
+                        <div class="support-elective-tip">
+                            <i data-lucide="info" class="support-tip-icon"></i>
+                            <span class="support-tip-text">本板块为选学，下方资源可按需自行取用</span>
+                        </div>
+
+                        <!-- 资源列表容器 -->
+                        <div class="support-resource-list">
+                            <!-- 资源项 1 -->
+                            <div class="support-resource-item">
+                                <h3 class="res-item-title">资源名称xxxxxx</h3>
+                                <p class="res-item-intro">资源简介xxxxx（完整显示，不截取）</p>
+                                <div class="res-item-meta">根据实际格式：在线预览或仅可下载，格式均可下载</div>
+                            </div>
+
+                            <!-- 资源项 2 -->
+                            <div class="support-resource-item">
+                                <h3 class="res-item-title">资源名称xxxxxx</h3>
+                                <p class="res-item-intro">资源简介xxxxx（完整显示，不截取）</p>
+                                <div class="res-item-meta">根据实际格式：在线预览或仅可下载，格式均可下载</div>
+                            </div>
+
+                            <!-- 资源项 3 -->
+                            <div class="support-resource-item">
+                                <h3 class="res-item-title">资源名称xxxxxx</h3>
+                                <p class="res-item-intro">资源简介xxxxx（完整显示，不截取）</p>
+                                <div class="res-item-meta">根据实际格式：在线预览或仅可下载，格式均可下载</div>
+                            </div>
+
+                            <!-- 资源项 4 -->
+                            <div class="support-resource-item">
+                                <h3 class="res-item-title">资源名称xxxxxx</h3>
+                                <p class="res-item-intro">资源简介xxxxx（完整显示，不截取）</p>
+                                <div class="res-item-meta">根据实际格式：在线预览或仅可下载，格式均可下载</div>
+                            </div>
+
+                            <!-- 资源项 5 -->
+                            <div class="support-resource-item">
+                                <h3 class="res-item-title">资源名称xxxxxx</h3>
+                                <p class="res-item-intro">资源简介xxxxx（完整显示，不截取）</p>
+                                <div class="res-item-meta">根据实际格式：在线预览或仅可下载，格式均可下载</div>
+                            </div>
+                        </div>
+
+                        <!-- 分页 -->
+                        <div class="common-pagination" id="supportPagination">
+                            <span class="pagination-total">共 50 条</span>
+                            <div class="pagination-pages">
+                                <button type="button" class="page-btn page-prev disabled" id="btnPagePrev" aria-label="上一页">
+                                    <i data-lucide="chevron-left" class="page-arrow-icon"></i>
+                                </button>
+                                <button type="button" class="page-btn page-num active" data-page="1">1</button>
+                                <button type="button" class="page-btn page-num" data-page="2">2</button>
+                                <button type="button" class="page-btn page-num" data-page="3">3</button>
+                                <button type="button" class="page-btn page-num" data-page="4">4</button>
+                                <span class="page-ellipsis">...</span>
+                                <button type="button" class="page-btn page-num" data-page="10">10</button>
+                                <button type="button" class="page-btn page-next" id="btnPageNext" aria-label="下一页">
+                                    <i data-lucide="chevron-right" class="page-arrow-icon"></i>
+                                </button>
+                            </div>
+                            <div class="pagination-jumper">
+                                <span>前往</span>
+                                <input type="number" min="1" max="10" value="1" class="jumper-input" id="pageJumperInput">
+                                <span>页</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- 悬浮 AI 伴学组件 -->
+        <div class="ai-companion-btn" id="aiCompanionBtn" title="点击呼唤AI伴学小助手">
+            <img src="style/img/AI-companion.png" alt="AI伴学">
+        </div>
+
+        <!-- 底部版权信息 -->
+        <footer class="page-footer">
+            <p>网络教育数字化学习资源中心 版权所有</p>
+            <p>技术支持：国开泛在（北京）教育科技有限公司</p>
+            <p>ICP备xxxxxxxx号 公安网备xxxxxx号</p>
+        </footer>
+    </div>
+</body>
+</html>

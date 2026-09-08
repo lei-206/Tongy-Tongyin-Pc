@@ -1,6 +1,6 @@
 // ---- 变量 ----
 $primary: #00a86b;
-$primary-light: #00c080;
+$primary-light: #00bd98;
 $primary-gradient: linear-gradient(135deg, $primary-light 0%, $primary 100%);
 $danger: #ff5a5a;
 $warning: #ffce3d;
@@ -13,7 +13,7 @@ $bg-soft: #f8fcfa;
 $bg-light: #f0faf5;
 $bg-info: #e8f9f1;
 $white: #fff;
-$font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", sans-serif;
+$font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, \\5FAE\8F6F\96C5\9ED1, Arial, sans-serif;
 $radius-card: 24px;
 $radius-btn: 22px;
 $radius-sm: 8px;
@@ -69,8 +69,7 @@ body {
     font-family: $font-family;
     color: $text-color;
     line-height: 1.6;
-    background: url("style/img/bg_body.jpg") no-repeat center top;
-    background-size: cover;
+    background: url("./img/bg_body.jpg") no-repeat center top;
     min-height: 100vh;
 }
 
@@ -84,12 +83,179 @@ body {
 .page-header {
     text-align: center;
     padding: 30px 20px 20px;
+    position: relative;
 
     .page-title-img {
-        max-width: 760px;
+        max-width: 960px;
         width: 90%;
         height: auto;
         filter: drop-shadow(0 4px 12px rgba(0, 166, 90, 0.15));
+    }
+    &.course-header-title {
+        position: relative;
+        margin-bottom: 20px;
+
+        .page-title-img {
+            max-width: 1160px;
+        }
+    }
+}
+
+// ---- 课程页右上角用户“我的”菜单 (图1 & 图2) ----
+.user-header-menu-wrap {
+    position: absolute;
+    top: 32px;
+    right: 40px;
+    z-index: 1000;
+}
+
+.user-menu-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 34px;
+    padding: 0 5px 0 14px;
+    background: #ffffff;
+    border: 1px solid #7ce0b8;
+    border-radius: 17px;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(0, 168, 107, 0.08);
+    transition: all 0.2s ease;
+    user-select: none;
+
+    &:hover {
+        border-color: #00bd98;
+        box-shadow: 0 4px 12px rgba(0, 168, 107, 0.18);
+        transform: translateY(-1px);
+    }
+
+    .user-pill-name {
+        color: #00bd98;
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+    }
+
+    .user-pill-arrow {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: #00bd98;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: background 0.2s ease;
+
+        .lucide,
+        svg {
+            display: block;
+            width: 14px;
+            height: 14px;
+            stroke-width: 2.5;
+            color: #ffffff;
+            transition: transform 0.25s ease;
+        }
+    }
+}
+
+.user-header-menu-wrap.is-open {
+    .user-menu-pill {
+        border-color: #00bd98;
+        box-shadow: 0 4px 12px rgba(0, 168, 107, 0.2);
+
+        .user-pill-arrow {
+            .lucide,
+            svg {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    .user-dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+}
+
+.user-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 1px);
+    right: 0;
+    min-width: 146px;
+    background: #ffffff;
+    border: 1px solid #eef2f0;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    pointer-events: none;
+
+    .menu-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 18px;
+        color: #333333;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        border-bottom: 1px solid #f2f2f2;
+        background: #ffffff;
+        transition: background 0.15s ease, color 0.15s ease;
+        cursor: pointer;
+        white-space: nowrap;
+
+        .menu-item-icon,
+        .lucide {
+            width: 17px;
+            height: 17px;
+            flex-shrink: 0;
+            stroke-width: 2;
+            color: #555555;
+            transition: stroke 0.15s ease, color 0.15s ease;
+        }
+
+        &:hover {
+            background: #f4fbf8;
+            color: #00bd98;
+
+            .menu-item-icon,
+            .lucide {
+                color: #00bd98;
+                stroke: #00bd98;
+            }
+        }
+
+        &.menu-item-logout {
+            border-bottom: none;
+            color: #e06c6c;
+
+            .menu-item-icon,
+            .lucide {
+                color: #e06c6c;
+                stroke: #e06c6c;
+            }
+
+            &:hover {
+                background: #fff5f5;
+                color: #d9383a;
+
+                .menu-item-icon,
+                .lucide {
+                    color: #d9383a;
+                    stroke: #d9383a;
+                }
+            }
+        }
     }
 }
 
@@ -848,6 +1014,7 @@ div.swal2-container button.swal2-close {
     text-align: left !important;
     line-height: 1.8 !important;
     margin: 0 !important;
+    padding: 6px 20px 10px !important;
 
     strong {
         color: $primary;
@@ -858,7 +1025,7 @@ div.swal2-container button.swal2-close {
 .swal2-actions {
     justify-content: flex-end !important;
     gap: 12px !important;
-    padding: 15px;
+    padding: 10px 20px 20px !important;
     margin: 0;
 }
 
@@ -884,6 +1051,547 @@ div.swal2-container button.swal2-close {
 
     &:hover {
         border-color: #aaa !important;
+    }
+}
+
+/* 课程页日历通知公告弹窗（根据UI设计效果图定制） */
+.calendar-notice-modal-popup {
+    width: 660px !important;
+    max-width: calc(100vw - 32px) !important;
+    background: #ffffff !important;
+    border-radius: 22px !important;
+    padding: 36px 44px 34px !important;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.22) !important;
+    font-family: $font-family !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+
+    .calendar-notice-modal-close {
+        position: absolute !important;
+        top: 16px !important;
+        right: 18px !important;
+        width: 28px !important;
+        height: 28px !important;
+        min-width: 28px !important;
+        min-height: 28px !important;
+        border-radius: 50% !important;
+        background: #9fa6b2 !important;
+        color: #ffffff !important;
+        font-size: 20px !important;
+        line-height: 24px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 0 2px 0 !important;
+        margin: 0 !important;
+        opacity: 0.95 !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+
+        &:hover {
+            background: #6b7280 !important;
+            color: #ffffff !important;
+            opacity: 1 !important;
+            transform: scale(1.08) !important;
+        }
+
+        &:active {
+            transform: scale(0.95) !important;
+        }
+    }
+
+    .calendar-notice-modal-title {
+        font-size: 24px !important;
+        font-weight: 700 !important;
+        color: #111111 !important;
+        text-align: center !important;
+        padding: 0 !important;
+        margin: 0 0 24px 0 !important;
+        display: block !important;
+        border: none !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    .swal2-html-container {
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: visible !important;
+    }
+
+    .calendar-notice-content {
+        text-align: center;
+
+        .calendar-notice-title-wrapper {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+
+            .calendar-notice-deco-img {
+                position: absolute;
+                left: -26px;
+                top: -24px;
+                width: 88px;
+                height: auto;
+                pointer-events: none;
+                z-index: 1;
+                user-select: none;
+            }
+
+            .calendar-notice-resource-title {
+                position: relative;
+                z-index: 2;
+                font-size: 24px;
+                font-weight: 700;
+                color: #1a1a1a;
+                letter-spacing: 0.5px;
+                margin: 0;
+                line-height: 1.35;
+            }
+        }
+
+        .calendar-notice-date {
+            font-size: 14px;
+            color: #666666;
+            margin: 10px 0 24px;
+            text-align: center;
+            font-family: inherit;
+        }
+
+        .calendar-notice-body {
+            font-size: 15px;
+            color: #333333;
+            line-height: 1.88;
+            text-align: justify;
+            text-justify: inter-ideograph;
+            word-break: break-word;
+            padding: 0 4px;
+            margin-bottom: 28px;
+            letter-spacing: 0.2px;
+        }
+    }
+
+    .swal2-actions {
+        justify-content: center !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .calendar-notice-modal-confirm {
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        outline: none !important;
+        cursor: pointer !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-shadow: none !important;
+        transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.2s ease !important;
+
+        .calendar-notice-btn-img {
+            width: 220px;
+            height: auto;
+            display: block;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        &:hover {
+            transform: scale(1.03) !important;
+            filter: brightness(1.05) drop-shadow(0 6px 18px rgba(255, 140, 0, 0.38)) !important;
+        }
+
+        &:active {
+            transform: scale(0.97) !important;
+        }
+    }
+
+    @media (max-width: 640px) {
+        padding: 30px 20px 24px !important;
+
+        .calendar-notice-modal-title {
+            font-size: 20px !important;
+            margin-bottom: 18px !important;
+        }
+
+        .calendar-notice-content {
+            .calendar-notice-title-wrapper {
+                .calendar-notice-deco-img {
+                    width: 68px;
+                    left: -18px;
+                    top: -18px;
+                }
+
+                .calendar-notice-resource-title {
+                    font-size: 18px;
+                }
+            }
+
+            .calendar-notice-date {
+                font-size: 12px;
+                margin: 8px 0 16px;
+            }
+
+            .calendar-notice-body {
+                font-size: 13.5px;
+                line-height: 1.75;
+                margin-bottom: 20px;
+            }
+        }
+
+        .calendar-notice-modal-confirm {
+            .calendar-notice-btn-img {
+                width: 180px;
+            }
+        }
+    }
+}
+
+/* 普通话水平初测弹窗（根据UI设计图定制） */
+.pth-test-modal-popup {
+    width: 660px !important;
+    max-width: calc(100vw - 32px) !important;
+    background: #ffffff !important;
+    border-radius: 22px !important;
+    padding: 36px 44px 34px !important;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.22) !important;
+    font-family: $font-family !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+
+    .pth-test-modal-close {
+        position: absolute !important;
+        top: 16px !important;
+        right: 18px !important;
+        width: 28px !important;
+        height: 28px !important;
+        min-width: 28px !important;
+        min-height: 28px !important;
+        border-radius: 50% !important;
+        background: #9fa6b2 !important;
+        color: #ffffff !important;
+        font-size: 20px !important;
+        line-height: 24px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 0 2px 0 !important;
+        margin: 0 !important;
+        opacity: 0.95 !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+
+        &:hover {
+            background: #6b7280 !important;
+            color: #ffffff !important;
+            opacity: 1 !important;
+            transform: scale(1.08) !important;
+        }
+
+        &:active {
+            transform: scale(0.95) !important;
+        }
+    }
+
+    .pth-test-modal-title {
+        font-size: 24px !important;
+        font-weight: 700 !important;
+        color: #111111 !important;
+        text-align: center !important;
+        padding: 0 !important;
+        margin: 2px 0 22px 0 !important;
+        display: block !important;
+        border: none !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    .swal2-html-container {
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: visible !important;
+    }
+
+    .pth-test-modal-content {
+        text-align: center;
+
+        .pth-modal-icon-tips {
+            width: 78px;
+            height: auto;
+            display: block;
+            margin: 0 auto 16px;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .pth-modal-tip-red {
+            font-size: 15px;
+            color: #ef4444;
+            margin-bottom: 6px;
+            text-align: center;
+            line-height: 1.55;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+
+            &:last-of-type {
+                margin-bottom: 22px;
+            }
+        }
+
+        .pth-modal-qr-card {
+            display: inline-flex;
+            align-items: center;
+            gap: 18px;
+            background: linear-gradient(135deg, #2ae0a6 0%, #3094fd 100%);
+            border-radius: 14px;
+            padding: 16px 22px;
+            color: #ffffff;
+            box-shadow: 0 8px 24px rgba(48, 148, 253, 0.28);
+            margin: 0 auto 30px;
+            text-align: left;
+            box-sizing: border-box;
+            max-width: 92%;
+
+            .pth-qr-img-box {
+                width: 100px;
+                height: 100px;
+                background: #ffffff;
+                border-radius: 8px;
+                padding: 6px;
+                flex-shrink: 0;
+                box-sizing: border-box;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                    object-fit: contain;
+                }
+            }
+
+            .pth-qr-text-box {
+                color: #ffffff;
+                line-height: 1.55;
+
+                .pth-qr-main {
+                    font-size: 19px;
+                    font-weight: 700;
+                    margin-bottom: 5px;
+                    letter-spacing: 0.5px;
+                }
+
+                .pth-qr-sub {
+                    font-size: 15px;
+                    opacity: 0.98;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+
+    .swal2-actions {
+        justify-content: center !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .pth-test-modal-confirm {
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        outline: none !important;
+        cursor: pointer !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-shadow: none !important;
+        transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.2s ease !important;
+
+        .pth-test-btn-img {
+            width: 210px;
+            height: auto;
+            display: block;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        &:hover {
+            transform: scale(1.03) !important;
+            filter: brightness(1.05) drop-shadow(0 6px 18px rgba(255, 140, 0, 0.38)) !important;
+        }
+
+        &:active {
+            transform: scale(0.97) !important;
+        }
+    }
+
+    @media (max-width: 640px) {
+        padding: 28px 18px 24px !important;
+
+        .pth-test-modal-title {
+            font-size: 20px !important;
+            margin-bottom: 16px !important;
+        }
+
+        .pth-test-modal-content {
+            .pth-modal-icon-tips {
+                width: 64px;
+                margin-bottom: 12px;
+            }
+
+            .pth-modal-tip-red {
+                font-size: 13.5px;
+            }
+
+            .pth-modal-qr-card {
+                padding: 12px 16px;
+                gap: 12px;
+                margin-bottom: 22px;
+
+                .pth-qr-img-box {
+                    width: 76px;
+                    height: 76px;
+                    padding: 4px;
+                }
+
+                .pth-qr-text-box {
+                    .pth-qr-main {
+                        font-size: 16px;
+                    }
+
+                    .pth-qr-sub {
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+
+        .pth-test-modal-confirm {
+            .pth-test-btn-img {
+                width: 175px;
+            }
+        }
+    }
+}
+
+/* 通知公告弹窗（参照效果图定制） */
+.notice-modal-popup {
+    width: 555px !important;
+    max-width: 92vw !important;
+    border-radius: 12px !important;
+    padding: 0 0 28px 0 !important;
+    box-shadow: 0 10px 36px rgba(0, 0, 0, 0.14) !important;
+    font-family: $font-family !important;
+    position: relative !important;
+
+    .notice-modal-title-bar {
+        text-align: left !important;
+        font-size: 18px !important;
+        font-weight: 700 !important;
+        color: #00a86b !important;
+        padding: 16px 24px !important;
+        margin: 0 !important;
+        border-bottom: 1px solid #eeeeee !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+    }
+
+    .swal2-close {
+        top: 16px !important;
+        right: 18px !important;
+        font-size: 22px !important;
+        color: #999999 !important;
+        font-weight: 300 !important;
+        opacity: 0.8;
+
+        &:hover {
+            opacity: 1;
+            color: #333333 !important;
+        }
+    }
+
+    .swal2-html-container {
+        padding: 24px 36px 10px !important;
+        margin: 0 !important;
+    }
+
+    .notice-dialog-content {
+        text-align: center;
+
+        .notice-inner-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #222222;
+            margin-bottom: 6px;
+        }
+
+        .notice-inner-date {
+            font-size: 13px;
+            color: #999999;
+            margin-bottom: 22px;
+        }
+
+        .notice-inner-body {
+            font-size: 14px;
+            color: #333333;
+            line-height: 1.85;
+            text-align: justify;
+            text-justify: inter-ideograph;
+            word-break: break-word;
+        }
+    }
+
+    .swal2-actions {
+        justify-content: center !important;
+        margin-top: 24px !important;
+        padding: 0 !important;
+    }
+
+    .notice-modal-btn-confirm {
+        background: #ffffff !important;
+        border: 1px solid #707070 !important;
+        border-radius: 4px !important;
+        color: #333333 !important;
+        font-size: 14px !important;
+        padding: 6px 36px !important;
+        height: 36px !important;
+        cursor: pointer !important;
+        transition: all 0.2s !important;
+        box-shadow: none !important;
+
+        &:hover {
+            background: #f7f7f7 !important;
+            border-color: #00a86b !important;
+            color: #00a86b !important;
+        }
+    }
+
+    .notice-modal-btn-cancel {
+        background: #ffffff !important;
+        border: 1px solid #c0c0c0 !important;
+        border-radius: 4px !important;
+        color: #666666 !important;
+        font-size: 14px !important;
+        padding: 6px 28px !important;
+        height: 36px !important;
+        cursor: pointer !important;
+        transition: all 0.2s !important;
+        box-shadow: none !important;
+        margin-right: 16px !important;
+
+        &:hover {
+            background: #f7f7f7 !important;
+            border-color: #999999 !important;
+            color: #333333 !important;
+        }
     }
 }
 
@@ -1363,6 +2071,32 @@ div.swal2-container button.swal2-close {
         -webkit-user-drag: none;
     }
 
+    .welcome-login-link-wrap {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .welcome-login-link {
+        display: inline-block;
+        padding: 6px 22px;
+        background: rgba(255, 255, 255, 0.92);
+        color: #00a86b;
+        border: 1px solid #7ce0b8;
+        border-radius: 18px;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 4px 12px rgba(0, 168, 107, 0.12);
+        transition: all 0.2s ease;
+
+        &:hover {
+            background: #ffffff;
+            color: #00bd98;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 168, 107, 0.22);
+        }
+    }
+
     .welcome-status-wrap {
         display: flex;
         flex-direction: column;
@@ -1512,3 +2246,1866 @@ div.swal2-container button.swal2-close {
         }
     }
 }
+
+// ==================== 课程学习页样式 ====================
+
+
+
+
+.course-main-layout {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto 30px;
+    padding: 0 20px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
+/* 左侧栏 */
+.course-sidebar {
+    width: 328px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* 学习计划表卡片 */
+
+
+.plan-header {
+    background: url("./img/bg-schedule.png") no-repeat center / 100% 100%;
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    min-height: 60px;
+}
+
+.plan-header-info {
+    color: #ffffff;
+    
+    
+
+    .plan-title {
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-shadow:  0px 2px 2px #04b172;
+    }
+
+    .plan-time {
+        font-size: 11px;
+        margin-top: 3px;
+    }
+}
+
+.plan-header-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-end;
+}
+
+.plan-pill-btn {
+    background: #ffffff;
+    color: $primary-light;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 12px;
+    border: 1px solid #7ce0b8;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+
+    &:hover {
+        background: #e6f9f0;
+        transform: translateY(-1px);
+        color: $primary-light;
+        text-decoration: none;
+    }
+}
+
+.plan-calendar-section {
+    background: url("./img/calendar-bg.png") no-repeat center / 100% 100%;
+    padding: 16px 14px 18px;
+    box-sizing: border-box;
+}
+
+.calendar-grid-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: #438865;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #7bc698;
+}
+
+.calendar-grid-body {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 12px 0;
+}
+
+.cal-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 38px;
+    cursor: pointer;
+
+    .cal-num {
+        position: relative;
+        z-index: 1;
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+        border-radius: 50%;
+        font-size: 16px;
+        font-weight: 700;
+        color: #596b61;
+        transition: all 0.15s;
+    }
+
+    &:hover .cal-num {
+        background: rgba(0, 168, 107, 0.12);
+    }
+
+    &.is-selected .cal-num {
+        border: 2px solid #ff7a28;
+        color: #596b61;
+        font-weight: 700;
+        line-height: 28px;
+        box-sizing: border-box;
+        background: transparent;
+    }
+
+    &.is-done {
+        .cal-num {
+            background: #00be7d;
+            color: #ffffff;
+            font-weight: 700;
+            box-shadow: 0 3px 8px rgba(0, 190, 125, 0.35);
+        }
+
+        &.is-selected .cal-num {
+            border: 2px solid #ff7a28;
+            line-height: 28px;
+            box-sizing: border-box;
+        }
+
+        // 连续已学日期的浅绿色胶囊连接条
+        &.strip-start::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: calc(50% - 16px);
+            right: 0;
+            height: 32px;
+            transform: translateY(-50%);
+            background: rgba(0, 195, 134, 0.22);
+            border-top-left-radius: 16px;
+            border-bottom-left-radius: 16px;
+            z-index: 0;
+        }
+
+        &.strip-mid::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 32px;
+            transform: translateY(-50%);
+            background: rgba(0, 195, 134, 0.22);
+            z-index: 0;
+        }
+
+        &.strip-end::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: calc(50% - 16px);
+            height: 32px;
+            transform: translateY(-50%);
+            background: rgba(0, 195, 134, 0.22);
+            border-top-right-radius: 16px;
+            border-bottom-right-radius: 16px;
+            z-index: 0;
+        }
+    }
+
+    .tag-badge {
+        position: absolute;
+        top: -7px;
+        right: -10px;
+        font-size: 11px;
+        line-height: 1.2;
+        padding: 1px 5px 1px 4px;
+        border-radius: 5px 9px 9px 0;
+        white-space: nowrap;
+        color: #ffffff;
+        z-index: 2;
+    }
+
+    &.tag-playback .tag-badge {
+        background: #c3c6c4;
+    }
+
+    &.tag-live .tag-badge {
+        background: #ff8c36;
+    }
+}
+
+.calendar-legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin: 18px 0 16px;
+    font-size: 12px;
+    color: #4e6055;
+    font-weight: 500;
+
+    .legend-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .legend-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+
+        &.green {
+            background: #00be7d;
+        }
+
+        &.orange {
+            border: 2px solid #ff7a28;
+            background: transparent;
+            box-sizing: border-box;
+        }
+    }
+}
+
+.plan-tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.task-btn,
+.notice-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    padding: 0 20px;
+    background: url("./img/calendar-btn-bg01.png") no-repeat center / 100% 100%;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+    padding-left: 90px;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0, 168, 107, 0.16);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+
+    .task-icon,
+    .notice-icon {
+        position: absolute;
+        left: 28px;
+        width: 44px;
+        height: 44px;
+        object-fit: contain;
+    }
+
+    .task-title,
+    .notice-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: $primary-light;
+        letter-spacing: 2px;
+        display: inline-block;
+
+        &.task-title-homework {
+            letter-spacing: 34px;
+            margin-right: -34px;
+        }
+    }
+
+    .badge-status-orange {
+        position: absolute;
+        top: 6px;
+        right: 12px;
+        background: #ff7a28;
+        color: #ffffff;
+        font-size: 11px;
+        padding: 2px 8px;
+        border-radius: 5px 9px 9px 0;
+        line-height: 1.2;
+    }
+}
+
+.notice-btn {
+
+    .notice-title {
+        position: relative;
+        text-align: left;
+        letter-spacing: 3px;
+
+        .red-badge-dot {
+            position: absolute;
+            top: -3px;
+            right: -10px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ff4d4f;
+            box-shadow: 0 0 4px rgba(255, 77, 79, 0.5);
+        }
+    }
+
+    > .red-badge-dot {
+        position: absolute;
+        top: 17px;
+        left: 178px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #ff4d4f;
+        box-shadow: 0 0 4px rgba(255, 77, 79, 0.5);
+    }
+}
+
+/* 专题 Banner */
+.topic-banner {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    a {
+        display: block;
+    }
+
+    .banner-img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+}
+
+/* 侧边栏公告卡片 */
+.sidebar-notice-card {
+    background: url("./img/calendar-bg02.png") no-repeat center / 100% 100%;
+    padding: 16px 14px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-sizing: border-box;
+}
+
+/* 右侧内容包裹区 */
+.course-right-wrap {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 右侧内容区 */
+.course-main-content {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #ffffff;
+	box-shadow: inset 1px 1px 0px 0px #b1e183, inset -1px -1px 2px 0px rgba(11, 171, 117, 0.52);
+	border-radius: 18px;
+    padding: 25px 2%;
+}
+
+/* 周末无其他学习内容卡片（水平居中，垂直靠上） */
+.course-empty-content {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    box-shadow: inset 1px 1px 0px 0px #b1e183, inset -1px -1px 2px 0px rgba(11, 171, 117, 0.52);
+    border-radius: 18px;
+    padding: 72px 40px 60px;
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    .empty-content-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+        text-align: center;
+    }
+
+    .empty-lucide-icon,
+    svg.lucide-info {
+        width: 56px;
+        height: 56px;
+        color: $primary;
+        stroke: $primary;
+        stroke-width: 2;
+        display: block;
+    }
+
+    .empty-content-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: $primary;
+        letter-spacing: 0.5px;
+        margin: 0;
+        line-height: 1.4;
+    }
+}
+
+/* 当日有直播卡片 */
+.daily-live-card {
+    background: #ffffff;
+	box-shadow: inset 1px 1px 0px 0px #b1e183, inset -1px -1px 2px 0px rgba(11, 171, 117, 0.52);
+	border-radius: 18px;
+    padding: 18px 25px;
+    margin-bottom: 22px;
+    box-sizing: border-box;
+
+    .live-card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .live-header-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .live-title-icon {
+            width: 32px;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        span {
+            font-size: 25px;
+            font-weight: 700;
+            color: #111111;
+            letter-spacing: 0.5px;
+        }
+    }
+
+    .live-collapse-btn {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 4px 6px;
+        color: #00a86b;
+        font-size: 15px;
+        font-weight: 600;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+
+        &:hover {
+            opacity: 0.85;
+            background: rgba(0, 168, 107, 0.06);
+        }
+
+        .collapse-icon {
+            width: 16px;
+            height: 16px;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.2s ease;
+        }
+
+        &.is-collapsed {
+            .collapse-icon {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    .live-card-body {
+        margin-top: 14px;
+        padding: 0 40px;
+    }
+
+    .live-item {
+        .live-item-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111111;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .live-meta-box {
+            background: #d8f7dc;
+            border-radius: 4px;
+            padding: 10px 18px;
+            margin-bottom: 12px;
+
+            .live-meta-row {
+                font-size: 15px;
+                color: #018259;
+                line-height: 1.65;
+                font-weight: 500;
+
+                &:not(:last-child) {
+                    margin-bottom: 4px;
+                }
+            }
+
+            .live-link {
+                color: #00a86b;
+                text-decoration: underline;
+                word-break: break-all;
+
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+        }
+
+        .live-item-desc {
+            font-size: 15px;
+            color: #4a4a4a;
+            line-height: 1.75;
+            text-align: justify;
+            word-break: break-all;
+        }
+    }
+
+    .live-item-divider {
+        height: 1px;
+        background: #edf3f0;
+        margin: 18px 0;
+    }
+
+    .playback-card-body {
+        .playback-item-header {
+            display: flex;
+            align-items: baseline;
+            gap: 28px;
+            margin-bottom: 12px;
+
+            .live-item-title {
+                margin-bottom: 0;
+            }
+
+            .playback-status {
+                font-size: 15px;
+                color: #666666;
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+/* 分类 Tab */
+.resource-categories {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+
+.category-item {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: url("./img/btn-zy-cate.png") no-repeat center / 100% 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    user-select: none;
+    box-sizing: border-box;
+
+    &:hover {
+        transform: translateY(-3px);
+    }
+
+    &.active {
+        background: url("./img/btn-zy-cateActive.png") no-repeat center / 100% 100%;
+
+        .cate-text {
+            color: #ffffff;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+        }
+    }
+
+    .cate-status-badge {
+        position: absolute;
+        top: 4px;
+        left: -4px;
+        width: 72px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 5px;
+        padding-right: 6px;
+        font-size: 14px;
+        color: #ffffff;
+        letter-spacing: 0.5px;
+        box-sizing: border-box;
+        z-index: 2;
+
+        &.badge-green {
+            background: url("./img/icon-tag-completed.png") no-repeat 0 0 / 100% 100%;
+        }
+
+        &.badge-orange {
+            background: url("./img/icon-tag-unfinished.png") no-repeat 0 0 / 100% 100%;
+        }
+    }
+
+    .cate-icon {
+        width: clamp(56px, 40%, 84px);
+        height: clamp(56px, 40%, 84px);
+        object-fit: contain;
+        margin-top: 10px;
+        margin-bottom: 6px;
+    }
+
+    .cate-text {
+        font-size: clamp(16px, 1.4vw, 24px);
+        font-weight: 600;
+        color: #009e86;
+        letter-spacing: 0.5px;
+    }
+}
+
+/* 文章与视频详情主体 */
+.course-article-card {
+    margin-top: 6%;
+    display: flex;
+    flex-direction: column;
+
+    .elective-ai-tip {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 10px;
+        margin-bottom: 38px;
+        color: $primary;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.4;
+
+        .elective-tip-icon {
+            width: 22px;
+            height: 22px;
+            color: $primary;
+            stroke: $primary;
+            stroke-width: 2.3;
+            flex-shrink: 0;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 2px;
+        }
+
+        .elective-tip-text {
+            display: inline-block;
+            vertical-align: middle;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+        }
+    }
+
+    .resource-heading {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 800;
+        color: #222222;
+        letter-spacing: 1px;
+        margin-top: 6px;
+        margin-bottom: 50px;
+        position: relative;
+        display: inline-block;
+        align-self: center;
+        z-index: 1;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: -32px;
+            top: -30px;
+            width: 100px;
+            height: 100px;
+            background: url("./img/icon-titlePic.png") no-repeat center / contain;
+            opacity: 1;
+            z-index: -1;
+            pointer-events: none;
+        }
+    }
+}
+
+/* 视频播放器样式 */
+.video-container {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    background: #000000;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+
+    video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        background: #000000;
+        cursor: pointer;
+    }
+
+    .video-overlay-play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 68px;
+        height: 68px;
+        background: rgba(0, 0, 0, 0.55);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.25s;
+        border: 2px solid rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(4px);
+
+        &:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            background: rgba(0, 168, 107, 0.75);
+            border-color: #ffffff;
+        }
+
+        .play-triangle {
+            width: 0;
+            height: 0;
+            border-top: 13px solid transparent;
+            border-bottom: 13px solid transparent;
+            border-left: 22px solid #ffffff;
+            margin-left: 5px;
+        }
+
+        &.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+    }
+
+    .video-custom-controls {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 44px;
+        background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.85) 100%);
+        display: flex;
+        align-items: center;
+        padding: 0 14px;
+        gap: 12px;
+        z-index: 10;
+        user-select: none;
+        transition: opacity 0.3s;
+
+        .ctrl-btn {
+            background: none;
+            border: none;
+            color: #ffffff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            outline: none;
+            font-size: 15px;
+            opacity: 0.9;
+            transition: all 0.2s;
+
+            &:hover {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+        }
+
+        .ctrl-time {
+            color: #ffffff;
+            font-size: 12px;
+            font-family: Consolas, monospace, sans-serif;
+            min-width: 42px;
+            text-align: center;
+        }
+
+        .ctrl-progress-bar {
+            flex: 1;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.35);
+            border-radius: 3px;
+            position: relative;
+            cursor: pointer;
+
+            .ctrl-progress-fill {
+                height: 100%;
+                background: #00e08f;
+                border-radius: 3px;
+                width: 0%;
+            }
+
+            .ctrl-progress-thumb {
+                position: absolute;
+                top: 50%;
+                width: 12px;
+                height: 12px;
+                background: #ffffff;
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+                box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+                transition: transform 0.1s;
+
+                &:hover {
+                    transform: translate(-50%, -50%) scale(1.3);
+                }
+            }
+        }
+    }
+}
+
+/* 提示文字栏 */
+.study-completion-tip {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-end;
+    gap: 8px;
+    height: 38px;
+    padding: 0 16px 0 12px;
+    background: #d9f7dd;
+    border-radius: 19px;
+    margin-top: 14px;
+    margin-bottom: 22px;
+    box-sizing: border-box;
+    transition: background-color 0.25s;
+
+    .tip-icon-img {
+        width: 17px;
+        height: 24px;
+        object-fit: contain;
+    }
+
+    .tip-text-content {
+        font-size: 16px;
+        color: #018259;
+        line-height: 1;
+        letter-spacing: 0.3px;
+        font-weight: 600;
+        transition: color 0.25s;
+    }
+
+    /* 未完成状态：浅红背景与红字 */
+    &.is-unfinished,
+    &.unfinished {
+        background: #fee8e8;
+
+        .tip-text-content {
+            color: #d9383a;
+        }
+    }
+}
+
+/* 富文本内容展示 */
+.rich-text-container {
+    color: #444444;
+    font-size: 16px;
+    line-height: 2;
+    letter-spacing: 0.5px;
+    border-top: 1px dashed #e2ede7;
+    padding-top: 20px;
+
+    p {
+        margin-bottom: 16px;
+        text-indent: 2em;
+        text-align: justify;
+        word-break: break-all;
+    }
+}
+
+/* 资源保障专属内容面板 */
+.support-resource-card {
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+
+    .support-elective-tip {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 10px;
+        margin-bottom: 38px;
+        color: $primary;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.4;
+
+        .support-tip-icon {
+            width: 22px;
+            height: 22px;
+            color: $primary;
+            stroke: $primary;
+            stroke-width: 2.3;
+            flex-shrink: 0;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 2px;
+        }
+
+        .support-tip-text {
+            display: inline-block;
+            vertical-align: middle;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+        }
+    }
+
+    .support-resource-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .support-resource-item {
+        background: #f6faf8;
+        border: 1px solid #e1efe8;
+        border-radius: 12px;
+        padding: 22px 26px;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background: #f0f8f3;
+            border-color: #cce6d9;
+            box-shadow: 0 4px 14px rgba(0, 168, 107, 0.08);
+            transform: translateY(-1px);
+        }
+
+        .res-item-title {
+            font-size: 19px;
+            font-weight: 700;
+            color: #1a2c24;
+            line-height: 1.4;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+
+        .res-item-intro {
+            font-size: 15px;
+            color: #556b60;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .res-item-meta {
+            font-size: 14px;
+            color: #018259;
+            line-height: 1.5;
+            font-weight: 500;
+            letter-spacing: 0.2px;
+        }
+    }
+}
+
+/* 通用分页组件 */
+.common-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 32px;
+    margin-bottom: 8px;
+    user-select: none;
+    flex-wrap: wrap;
+
+    .pagination-total {
+        font-size: 14px;
+        color: #5b7166;
+        margin-right: 4px;
+    }
+
+    .pagination-pages {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .page-btn {
+        min-width: 36px;
+        height: 36px;
+        padding: 0 6px;
+        border-radius: 8px;
+        border: 1px solid #d4ece1;
+        background: #ffffff;
+        color: #2b4035;
+        font-size: 14px;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        outline: none;
+        transition: all 0.2s ease;
+        box-sizing: border-box;
+
+        &:hover:not(.disabled):not(.active) {
+            border-color: $primary;
+            color: $primary;
+            background: #f0faf5;
+            transform: translateY(-1px);
+        }
+
+        &.active {
+            background: linear-gradient(135deg, #00bd98, #00a86b);
+            border-color: #00a86b;
+            color: #ffffff;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(0, 168, 107, 0.28);
+            cursor: default;
+        }
+
+        &.disabled {
+            color: #b8cfc3;
+            border-color: #e5f0ea;
+            background: #fbfdfc;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .page-arrow-icon {
+            width: 18px;
+            height: 18px;
+            stroke-width: 2.2;
+            display: block;
+        }
+    }
+
+    .page-ellipsis {
+        color: #8da498;
+        font-size: 14px;
+        padding: 0 4px;
+        line-height: 36px;
+        letter-spacing: 2px;
+    }
+
+    .pagination-jumper {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 14px;
+        color: #5b7166;
+        margin-left: 4px;
+
+        .jumper-input {
+            width: 48px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid #d4ece1;
+            background: #ffffff;
+            text-align: center;
+            font-size: 14px;
+            color: #2b4035;
+            outline: none;
+            box-sizing: border-box;
+            transition: all 0.2s;
+            -moz-appearance: textfield;
+
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            &:focus {
+                border-color: $primary;
+                box-shadow: 0 0 0 3px rgba(0, 168, 107, 0.14);
+            }
+        }
+    }
+}
+
+/* 悬浮 AI 伴学组件 */
+.ai-companion-btn {
+    position: fixed;
+    right: 28px;
+    bottom: 60px;
+    z-index: 999;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: float-slow 3.2s ease-in-out infinite;
+
+    img {
+        width: 96px;
+        height: auto;
+        display: block;
+        filter: drop-shadow(0 6px 16px rgba(0, 130, 240, 0.35));
+    }
+
+    &:hover {
+        transform: scale(1.1);
+        animation-play-state: paused;
+    }
+}
+
+@keyframes float-slow {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* 响应式适配 */
+@media (max-width: 1080px) {
+    .course-main-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .course-sidebar {
+        width: 100%;
+        max-width: 580px;
+    }
+
+    .course-right-wrap,
+    .course-main-content {
+        width: 100%;
+    }
+
+    .user-header-menu-wrap {
+        right: 20px;
+        top: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .resource-categories {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .course-article-card {
+        padding: 20px 16px;
+    }
+
+    .ai-companion-btn {
+        right: 16px;
+        bottom: 40px;
+
+        img {
+            width: 80px;
+        }
+    }
+
+    .user-header-menu-wrap {
+        right: 14px;
+        top: 14px;
+
+        .user-menu-pill {
+            height: 30px;
+            padding: 0 4px 0 10px;
+
+            .user-pill-name {
+                font-size: 13px;
+            }
+
+            .user-pill-arrow {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+}
+
+/* 修改密码弹窗表单 */
+.pwd-modal-popup {
+    .pwd-dialog-form {
+        text-align: left;
+        padding: 8px 4px 4px;
+
+        .pwd-field-row {
+            margin-bottom: 14px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            label {
+                display: block;
+                font-size: 13px;
+                color: #555555;
+                font-weight: 600;
+                margin-bottom: 6px;
+            }
+
+            .custom-pwd-input {
+                width: 100% !important;
+                margin: 0 !important;
+                height: 38px !important;
+                border: 1px solid #d0e8dd !important;
+                border-radius: 6px !important;
+                padding: 0 12px !important;
+                font-size: 14px !important;
+                box-sizing: border-box !important;
+                color: #333333 !important;
+
+                &:focus {
+                    border-color: #00bd98 !important;
+                    box-shadow: 0 0 0 2px rgba(0, 189, 152, 0.2) !important;
+                    outline: none !important;
+                }
+            }
+        }
+    }
+}
+
+// ==================== 登录页样式 (login.html) ====================
+.login-page-body {
+    background: url("./img/login-bg.jpg") no-repeat center top;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 30px 20px 16px;
+}
+
+.login-header {
+    text-align: center;
+    margin-top: 4%;
+
+    .login-title-img {
+        max-width: 1240px;
+        width: 88vw;
+        height: auto;
+        filter: drop-shadow(0 4px 14px rgba(0, 166, 90, 0.15));
+    }
+}
+
+.login-card-container {
+    width: 100%;
+    max-width: 900px;
+}
+
+.login-capsule-card {
+    background: #ffffff;
+    border-radius: 210px;
+    padding: 3% 25% 5%;
+    box-shadow: 0 16px 48px rgba(0, 150, 130, 0.12);
+    box-sizing: border-box;
+
+    .login-card-title {
+        text-align: center;
+        font-size: 35px;
+        color: #222222;
+        margin-bottom: 30px;
+        font-weight: normal;
+        letter-spacing: 1px;
+    }
+
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 26px;
+    }
+
+    .login-input-group {
+        display: flex;
+        align-items: center;
+        background: #f4f6f8;
+        border: 1px solid #edf0f2;
+        border-radius: 24px;
+        height: 46px;
+        padding: 0 18px;
+        box-sizing: border-box;
+        transition: all 0.2s ease;
+
+        &:focus-within {
+            background: #ffffff;
+            border-color: #00bd98;
+            box-shadow: 0 0 0 3px rgba(0, 189, 152, 0.15);
+        }
+
+        .input-icon-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+
+            img {
+                width: 17px;
+                height: 17px;
+                object-fit: contain;
+                display: block;
+            }
+
+            svg, i {
+                width: 17px;
+                height: 17px;
+                stroke: #1ac1ee;
+                color: #1ac1ee;
+                stroke-width: 2.2;
+                display: block;
+            }
+        }
+
+        .input-label-text {
+            font-size: 16px;
+            color: #333333;
+            margin-left: 8px;
+            margin-right: 14px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .login-field-input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            color: #333333;
+            outline: none;
+            height: 100%;
+
+            &::placeholder {
+                color: #b0b8c0;
+                font-size: 13px;
+            }
+        }
+    }
+
+    .login-options-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 4px;
+        margin-top: -2px;
+
+        &.login-link-center {
+            justify-content: center;
+
+            .forget-pwd-link {
+                font-size: 15px;
+            }
+        }
+
+        .remember-pwd-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 16px;
+            color: #555555;
+            cursor: pointer;
+            user-select: none;
+
+            input[type="checkbox"] {
+                display: none;
+            }
+
+            .remember-dot-icon {
+                width: 14px;
+                height: 14px;
+                object-fit: contain;
+                opacity: 0.95;
+                transition: opacity 0.2s;
+            }
+
+            input[type="checkbox"]:not(:checked) + .remember-dot-icon {
+                filter: grayscale(100%);
+                opacity: 0.35;
+            }
+        }
+
+        .forget-pwd-link {
+            font-size: 16px;
+            color: #00a498;
+            text-decoration: none;
+            transition: color 0.2s;
+
+            &:hover {
+                color: #007e76;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .login-input-group {
+        &.login-input-group-sms {
+            padding-right: 6px;
+
+            .btn-sms-inside {
+                border: none;
+                background: linear-gradient(90deg, #1ac1ee 0%, #1cceb4 100%);
+                color: #ffffff;
+                font-size: 13px;
+                height: 34px;
+                padding: 0 16px;
+                border-radius: 17px;
+                cursor: pointer;
+                white-space: nowrap;
+                flex-shrink: 0;
+                outline: none;
+                box-shadow: 0 2px 8px rgba(26, 193, 238, 0.25);
+                transition: all 0.2s ease;
+
+                &:hover {
+                    filter: brightness(1.05);
+                    box-shadow: 0 4px 12px rgba(26, 193, 238, 0.35);
+                }
+
+                &:active {
+                    transform: translateY(1px);
+                }
+
+                &:disabled {
+                    background: #d4e4e0;
+                    color: #ffffff;
+                    box-shadow: none;
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+
+    .btn-login-submit {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 52px;
+        background: linear-gradient(90deg, #1ac1ee 0%, #1cceb4 100%);
+        border: none;
+        border-radius: 26px;
+        color: #ffffff;
+        font-size: 22px;
+        font-weight: 500;
+        letter-spacing: 16px;
+        padding-left: 16px;
+        cursor: pointer;
+        outline: none;
+        box-shadow: 0 6px 20px rgba(27, 195, 235, 0.32);
+        transition: all 0.25s ease;
+        margin-top: 8px;
+
+        &.btn-reset-step {
+            letter-spacing: 10px;
+            padding-left: 10px;
+        }
+
+        &.btn-reset-finish {
+            letter-spacing: 6px;
+            padding-left: 6px;
+        }
+
+        &:hover {
+            filter: brightness(1.04);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 26px rgba(27, 195, 235, 0.45);
+        }
+
+        &:active {
+            transform: translateY(1px);
+            box-shadow: 0 4px 14px rgba(27, 195, 235, 0.3);
+        }
+    }
+
+    @media (max-width: 768px) {
+        border-radius: 24px;
+        padding: 28px 20px 32px;
+    }
+}
+
+
+
+// ==================== 我的课程页样式 (my-courses.html) ====================
+.my-courses-layout {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto 36px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.my-courses-card {
+    background-color: #ffffff;
+    box-shadow: inset 1px 1px 0px 0px #b1e183, inset -1px -1px 2px 0px rgba(11, 171, 117, 0.52);
+    border-radius: 18px;
+    padding: 8px 36px;
+    box-sizing: border-box;
+}
+
+.my-course-item {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 26px 0;
+    border-bottom: 1px solid #eeeeee;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    .course-thumb-wrap {
+        width: 350px;
+        flex-shrink: 0;
+        border: 2px solid #3de3be;
+        border-radius: 4px;
+        overflow: hidden;
+        box-sizing: border-box;
+        background: #ffffff;
+
+        img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        &:hover img {
+            transform: scale(1.03);
+        }
+    }
+
+    .course-detail-wrap {
+        flex: 1;
+        min-width: 0;
+
+        .course-item-title {
+            font-size: 26px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            letter-spacing: 0.5px;
+        }
+
+        .course-time-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 40px;
+            padding: 8px 16%;
+            background: #d8f7dc;
+            border-radius: 4px;
+            color: #018259;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 14px;
+
+            span {
+                white-space: nowrap;
+            }
+        }
+
+        .course-qr-group {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+
+            .qr-banner-card {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                background: linear-gradient(135deg, #3be7b5 0%, #3898fd 100%);
+                border-radius: 8px;
+                padding: 12px 15px;
+                color: #ffffff;
+                box-shadow: 0 4px 14px rgba(56, 152, 253, 0.22);
+                min-width: 304px;
+                box-sizing: border-box;
+
+                .qr-img-box {
+                    width: 58px;
+                    height: 58px;
+                    background: #ffffff;
+                    border-radius: 4px;
+                    padding: 3px;
+                    flex-shrink: 0;
+                    box-sizing: border-box;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        display: block;
+                        object-fit: contain;
+                    }
+                }
+
+                .qr-text-box {
+                    line-height: 1.4;
+
+                    .qr-main-tip {
+                        font-size: 15px;
+                        font-weight: 700;
+                        margin-bottom: 2px;
+                        letter-spacing: 0.5px;
+                    }
+
+                    .qr-sub-tip {
+                        font-size: 13px;
+                        opacity: 0.95;
+                        line-height: 1.35;
+                    }
+                }
+            }
+        }
+    }
+
+    .course-action-wrap {
+        flex-shrink: 0;
+        margin-left: 15px;
+        display: flex;
+        align-items: center;
+
+        .btn-start-study-img {
+            display: block;
+            width: 240px;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.2s ease, filter 0.2s ease;
+
+            &:hover {
+                transform: translateY(-2px) scale(1.02);
+            }
+
+            &:active {
+                transform: translateY(0);
+            }
+        }
+    }
+}
+
+// 响应式调整
+@media (max-width: 1080px) {
+    .my-course-item {
+        flex-wrap: wrap;
+        gap: 20px;
+
+        .course-action-wrap {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            margin-left: 0;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .login-capsule-card {
+        border-radius: 40px;
+        padding: 32px 24px;
+    }
+
+    .my-courses-card {
+        padding: 8px 16px;
+    }
+
+    .my-course-item {
+        flex-direction: column;
+        align-items: flex-start;
+
+        .course-thumb-wrap {
+            width: 100%;
+            height: auto;
+        }
+
+        .course-detail-wrap {
+            width: 100%;
+        }
+
+        .course-action-wrap {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
+
+// ==================== 课程学习首次进入页 ====================
+
+
+.course-first-main-layout {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+.course-first-card {
+    width: 100%;
+    margin: 10px auto 30px;
+    background: #ffffff url("./img/bg-course-first-bg.jpg") no-repeat top center;
+    background-size: 100% auto;
+    border-radius: 24px;
+    box-shadow: inset 1px 1px 0px 0px #b1e183, inset -1px -1px 2px 0px rgba(11, 171, 117, 0.52);
+    padding: 72px 40px 96px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    .welcome-robot-banner {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: min(880px, 94%);
+        margin: 0 auto;
+
+        .robot-banner-frame {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 6px 18px rgba(0, 180, 240, 0.16));
+        }
+
+        .robot-banner-text {
+            position: absolute;
+            width: 86%;
+            max-width: 660px;
+            height: auto;
+            display: block;
+            left: 54%;
+            top: 60%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            user-select: none;
+            filter: drop-shadow(0 2px 6px rgba(0, 168, 107, 0.15));
+        }
+    }
+
+    .course-first-prompt {
+        font-size: 24px;
+        font-weight: 700;
+        color: #1e293b;
+        margin: 48px 0 32px;
+        text-align: center;
+        letter-spacing: 0.8px;
+        line-height: 1.4;
+    }
+
+    .course-first-action {
+        margin-bottom: 8px;
+        text-align: center;
+
+        .btn-pth-test-wrap {
+            display: inline-block;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.25s ease;
+
+            &:hover {
+                transform: translateY(-3px) scale(1.04);
+                filter: brightness(1.04) drop-shadow(0 10px 24px rgba(255, 150, 0, 0.4));
+            }
+
+            &:active {
+                transform: translateY(0) scale(0.98);
+            }
+        }
+
+        .btn-pth-test-img {
+            width: min(320px, 80vw);
+            height: auto;
+            display: block;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+    }
+
+    .course-first-disclaimer {
+        font-size: 14px;
+        color: #64748b;
+        margin-top: 14px;
+        text-align: center;
+        letter-spacing: 0.3px;
+    }
+
+    @media (max-width: 768px) {
+        padding: 40px 20px 60px;
+        border-radius: 18px;
+
+        .course-first-prompt {
+            font-size: 17px;
+            margin: 32px 0 22px;
+        }
+
+        .course-first-action {
+            .btn-pth-test-img {
+                width: 250px;
+            }
+        }
+
+        .course-first-disclaimer {
+            font-size: 12px;
+            margin-top: 10px;
+        }
+    }
+}
+
+
+

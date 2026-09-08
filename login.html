@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>“童语同音”学前儿童普通话师资培训 - 欢迎登录</title>
+    <script type="module" src="/style/main.js"></script>
+</head>
+<body>
+    <div class="login-page-body">
+    <!-- 顶部标题图片 -->
+    <header class="login-header">
+        <img src="style/img/login-title.png" alt="欢迎进入“童语同音”学前儿童普通话师资培训线上培训平台" class="login-title-img">
+    </header>
+
+    <!-- 中间登录卡片 -->
+    <main class="login-card-container">
+        <div class="login-capsule-card">
+            <h2 class="login-card-title">欢迎登录</h2>
+            <form class="login-form" id="loginForm" onsubmit="return false;">
+                <!-- 用户名输入行 -->
+                <div class="login-input-group">
+                    <span class="input-icon-wrap">
+                        <img src="style/img/icon-login-user.png" alt="用户名">
+                    </span>
+                    <span class="input-label-text">用户名</span>
+                    <input type="text" id="loginUsername" class="login-field-input" placeholder="报名时的手机号" autocomplete="username">
+                </div>
+
+                <!-- 密码输入行 -->
+                <div class="login-input-group">
+                    <span class="input-icon-wrap">
+                        <img src="style/img/icon-login-psw.png" alt="密码">
+                    </span>
+                    <span class="input-label-text">密&emsp;码</span>
+                    <input type="password" id="loginPassword" class="login-field-input" placeholder="请输入密码" autocomplete="current-password">
+                </div>
+
+                <!-- 记住密码与忘记密码 -->
+                <div class="login-options-row">
+                    <label class="remember-pwd-label">
+                        <input type="checkbox" id="rememberPsw" checked>
+                        <img src="style/img/icon-login-remember-psw.png" alt="记住密码" class="remember-dot-icon">
+                        <span>记住密码</span>
+                    </label>
+                    <a href="forget-password.html" id="btnForgetPwd" class="forget-pwd-link">忘记密码？</a>
+                </div>
+
+                <!-- 登录按钮 -->
+                <button type="submit" id="btnLoginSubmit" class="btn-login-submit">登录</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- 底部版权信息 -->
+    <footer class="page-footer">
+        <p>网络教育数字化学习资源中心 版权所有</p>
+        <p>技术支持：国开泛在（北京）教育科技有限公司</p>
+        <p>ICP备xxxxxxxx号 公安网备xxxxxx号</p>
+    </footer>
+</div>
+</body>
+</html>
