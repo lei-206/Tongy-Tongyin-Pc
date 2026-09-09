@@ -2265,11 +2265,12 @@ div.swal2-container button.swal2-close {
 
 /* 左侧栏 */
 .course-sidebar {
-    width: 328px;
+    width: 400px;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
     gap: 16px;
+    align-self: flex-start;
 }
 
 /* 学习计划表卡片 */
@@ -2277,12 +2278,12 @@ div.swal2-container button.swal2-close {
 
 .plan-header {
     background: url("./img/bg-schedule.png") no-repeat center / 100% 100%;
-    padding: 10px 14px;
+    padding: 12px 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    min-height: 60px;
+    min-height: 66px;
 }
 
 .plan-header-info {
@@ -2291,32 +2292,32 @@ div.swal2-container button.swal2-close {
     
 
     .plan-title {
-        font-size: 18px;
+        font-size: 26px;
         font-weight: 700;
         letter-spacing: 0.5px;
         text-shadow:  0px 2px 2px #04b172;
     }
 
     .plan-time {
-        font-size: 11px;
-        margin-top: 3px;
+        font-size: 15px;
+        margin-top: 4px;
     }
 }
 
 .plan-header-btns {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
     align-items: flex-end;
 }
 
 .plan-pill-btn {
     background: #ffffff;
     color: $primary-light;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
-    padding: 2px 10px;
-    border-radius: 12px;
+    padding: 3px 12px;
+    border-radius: 14px;
     border: 1px solid #7ce0b8;
     cursor: pointer;
     outline: none;
@@ -2337,7 +2338,7 @@ div.swal2-container button.swal2-close {
 
 .plan-calendar-section {
     background: url("./img/calendar-bg.png") no-repeat center / 100% 100%;
-    padding: 16px 14px 18px;
+    padding: 16px 16px 18px;
     box-sizing: border-box;
 }
 
@@ -2345,10 +2346,10 @@ div.swal2-container button.swal2-close {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     text-align: center;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 700;
     color: #438865;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     padding-bottom: 8px;
     border-bottom: 1px solid #7bc698;
 }
@@ -2356,7 +2357,7 @@ div.swal2-container button.swal2-close {
 .calendar-grid-body {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 12px 0;
+    gap: 14px 0;
 }
 
 .cal-cell {
@@ -2364,18 +2365,18 @@ div.swal2-container button.swal2-close {
     align-items: center;
     justify-content: center;
     position: relative;
-    height: 38px;
+    height: 42px;
     cursor: pointer;
 
     .cal-num {
         position: relative;
         z-index: 1;
-        width: 32px;
-        height: 32px;
-        line-height: 32px;
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
         text-align: center;
         border-radius: 50%;
-        font-size: 16px;
+        font-size: 18px;
         font-weight: 700;
         color: #596b61;
         transition: all 0.15s;
@@ -2389,7 +2390,7 @@ div.swal2-container button.swal2-close {
         border: 2px solid #ff7a28;
         color: #596b61;
         font-weight: 700;
-        line-height: 28px;
+        line-height: 32px;
         box-sizing: border-box;
         background: transparent;
     }
@@ -2404,7 +2405,7 @@ div.swal2-container button.swal2-close {
 
         &.is-selected .cal-num {
             border: 2px solid #ff7a28;
-            line-height: 28px;
+            line-height: 32px;
             box-sizing: border-box;
         }
 
@@ -2413,13 +2414,13 @@ div.swal2-container button.swal2-close {
             content: "";
             position: absolute;
             top: 50%;
-            left: calc(50% - 16px);
+            left: calc(50% - 18px);
             right: 0;
-            height: 32px;
+            height: 36px;
             transform: translateY(-50%);
             background: rgba(0, 195, 134, 0.22);
-            border-top-left-radius: 16px;
-            border-bottom-left-radius: 16px;
+            border-top-left-radius: 18px;
+            border-bottom-left-radius: 18px;
             z-index: 0;
         }
 
@@ -2429,7 +2430,7 @@ div.swal2-container button.swal2-close {
             top: 50%;
             left: 0;
             right: 0;
-            height: 32px;
+            height: 36px;
             transform: translateY(-50%);
             background: rgba(0, 195, 134, 0.22);
             z-index: 0;
@@ -2440,23 +2441,23 @@ div.swal2-container button.swal2-close {
             position: absolute;
             top: 50%;
             left: 0;
-            right: calc(50% - 16px);
-            height: 32px;
+            right: calc(50% - 18px);
+            height: 36px;
             transform: translateY(-50%);
             background: rgba(0, 195, 134, 0.22);
-            border-top-right-radius: 16px;
-            border-bottom-right-radius: 16px;
+            border-top-right-radius: 18px;
+            border-bottom-right-radius: 18px;
             z-index: 0;
         }
     }
 
     .tag-badge {
         position: absolute;
-        top: -7px;
-        right: -10px;
-        font-size: 11px;
+        top: -8px;
+        right: -8px;
+        font-size: 12px;
         line-height: 1.2;
-        padding: 1px 5px 1px 4px;
+        padding: 2px 6px;
         border-radius: 5px 9px 9px 0;
         white-space: nowrap;
         color: #ffffff;
@@ -2477,20 +2478,20 @@ div.swal2-container button.swal2-close {
     justify-content: center;
     align-items: center;
     gap: 24px;
-    margin: 18px 0 16px;
-    font-size: 12px;
+    margin: 20px 0 18px;
+    font-size: 14px;
     color: #4e6055;
     font-weight: 500;
 
     .legend-item {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
+        gap: 8px;
     }
 
     .legend-dot {
-        width: 10px;
-        height: 10px;
+        width: 12px;
+        height: 12px;
         border-radius: 50%;
         display: inline-block;
 
@@ -2509,7 +2510,7 @@ div.swal2-container button.swal2-close {
 .plan-tasks {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
 }
 
 .task-btn,
@@ -2517,13 +2518,13 @@ div.swal2-container button.swal2-close {
     position: relative;
     display: flex;
     align-items: center;
-    height: 60px;
+    height: 64px;
     padding: 0 20px;
     background: url("./img/calendar-btn-bg01.png") no-repeat center / 100% 100%;
     cursor: pointer;
     transition: all 0.2s;
     user-select: none;
-    padding-left: 90px;
+    padding-left: 106px;
 
     &:hover {
         transform: translateY(-2px);
@@ -2537,37 +2538,48 @@ div.swal2-container button.swal2-close {
     .task-icon,
     .notice-icon {
         position: absolute;
-        left: 28px;
-        width: 44px;
-        height: 44px;
+        left: 36px;
+        width: 48px;
+        height: 48px;
         object-fit: contain;
     }
 
     .task-title,
     .notice-title {
-        font-size: 20px;
+        font-size: 22px;
         font-weight: 700;
         color: $primary-light;
         letter-spacing: 2px;
         display: inline-block;
 
         &.task-title-homework {
-            letter-spacing: 34px;
-            margin-right: -34px;
+            letter-spacing: 38px;
+            margin-right: -38px;
         }
     }
 
     .badge-status-orange {
         position: absolute;
-        top: 6px;
-        right: 12px;
+        top: 7px;
+        right: 14px;
         background: #ff7a28;
         color: #ffffff;
-        font-size: 11px;
-        padding: 2px 8px;
-        border-radius: 5px 9px 9px 0;
+        font-size: 13px;
+        padding: 3px 10px;
+        border-radius: 6px 10px 10px 0;
         line-height: 1.2;
     }
+}
+
+.sidebar-notice-card {
+    background: #effbf4;
+    border: 1.5px solid #a1e2c1;
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 0 8px 24px rgba(0, 150, 100, 0.08);
 }
 
 .notice-btn {
@@ -2580,9 +2592,9 @@ div.swal2-container button.swal2-close {
         .red-badge-dot {
             position: absolute;
             top: -3px;
-            right: -10px;
-            width: 8px;
-            height: 8px;
+            right: -12px;
+            width: 9px;
+            height: 9px;
             border-radius: 50%;
             background: #ff4d4f;
             box-shadow: 0 0 4px rgba(255, 77, 79, 0.5);
@@ -2593,8 +2605,8 @@ div.swal2-container button.swal2-close {
         position: absolute;
         top: 17px;
         left: 178px;
-        width: 8px;
-        height: 8px;
+        width: 9px;
+        height: 9px;
         border-radius: 50%;
         background: #ff4d4f;
         box-shadow: 0 0 4px rgba(255, 77, 79, 0.5);
@@ -2640,6 +2652,7 @@ div.swal2-container button.swal2-close {
     min-width: 0;
     display: flex;
     flex-direction: column;
+    align-self: stretch;
 }
 
 /* 右侧内容区 */
@@ -2659,8 +2672,9 @@ div.swal2-container button.swal2-close {
     background-color: #ffffff;
     box-shadow: inset 1px 1px 0px 0px #b1e183, inset -1px -1px 2px 0px rgba(11, 171, 117, 0.52);
     border-radius: 18px;
-    padding: 72px 40px 60px;
-    min-height: 520px;
+    padding: 130px 40px 80px;
+    flex: 1;
+    min-height: 560px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2670,24 +2684,61 @@ div.swal2-container button.swal2-close {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 18px;
         text-align: center;
     }
 
-    .empty-lucide-icon,
-    svg.lucide-info {
-        width: 56px;
-        height: 56px;
-        color: $primary;
-        stroke: $primary;
-        stroke-width: 2;
+    .empty-icon-img {
+        width: 260px;
+        max-width: 85%;
+        height: auto;
+        object-fit: contain;
         display: block;
+        margin-bottom: 28px;
     }
 
     .empty-content-title {
-        font-size: 24px;
+        font-size: 26px;
         font-weight: 700;
-        color: $primary;
+        color: #111111;
+        letter-spacing: 0.5px;
+        margin: 0;
+        line-height: 1.4;
+    }
+}
+
+/* 工作日有直播尚未解锁卡片（水平居中，垂直靠上） */
+.course-locked-content {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    box-shadow: inset 1px 1px 0px 0px #b1e183, inset -1px -1px 2px 0px rgba(11, 171, 117, 0.52);
+    border-radius: 18px;
+    padding: 80px 40px 80px;
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    .locked-content-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .locked-icon-img {
+        width: 190px;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        margin-bottom: 28px;
+    }
+
+    .locked-content-title {
+        font-size: 26px;
+        font-weight: 700;
+        color: #111111;
         letter-spacing: 0.5px;
         margin: 0;
         line-height: 1.4;
@@ -2737,7 +2788,7 @@ div.swal2-container button.swal2-close {
         border: none;
         cursor: pointer;
         padding: 4px 6px;
-        color: #00a86b;
+        color: #00bd98;
         font-size: 15px;
         font-weight: 600;
         border-radius: 4px;
@@ -2745,7 +2796,7 @@ div.swal2-container button.swal2-close {
 
         &:hover {
             opacity: 0.85;
-            background: rgba(0, 168, 107, 0.06);
+            background: rgba(0, 189, 152, 0.08);
         }
 
         .collapse-icon {
@@ -2821,20 +2872,32 @@ div.swal2-container button.swal2-close {
     }
 
     .playback-card-body {
-        .playback-item-header {
-            display: flex;
-            align-items: baseline;
-            gap: 28px;
-            margin-bottom: 12px;
+        .playback-meta-box {
+            background: #f5f6f8;
+            border-radius: 4px;
+            padding: 12px 18px;
+            margin-bottom: 14px;
 
-            .live-item-title {
-                margin-bottom: 0;
-            }
-
-            .playback-status {
+            .playback-meta-row {
                 font-size: 15px;
                 color: #666666;
-                font-weight: 500;
+                line-height: 1.65;
+                font-weight: 400;
+
+                &:not(:last-child) {
+                    margin-bottom: 4px;
+                }
+            }
+
+            .playback-link {
+                color: #666666;
+                text-decoration: none;
+                word-break: break-all;
+
+                &:hover {
+                    color: #00bd98;
+                    text-decoration: underline;
+                }
             }
         }
     }
@@ -3420,7 +3483,9 @@ div.swal2-container button.swal2-close {
     }
 
     .course-right-wrap,
-    .course-main-content {
+    .course-main-content,
+    .course-empty-content,
+    .course-locked-content {
         width: 100%;
     }
 
@@ -3437,6 +3502,23 @@ div.swal2-container button.swal2-close {
 
     .course-article-card {
         padding: 20px 16px;
+    }
+
+    .course-empty-content,
+    .course-locked-content {
+        padding: 50px 20px 60px;
+        min-height: 380px;
+
+        .empty-icon-img,
+        .locked-icon-img {
+            width: 160px;
+            margin-bottom: 20px;
+        }
+
+        .empty-content-title,
+        .locked-content-title {
+            font-size: 20px;
+        }
     }
 
     .ai-companion-btn {

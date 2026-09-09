@@ -8,6 +8,8 @@ import btnIKnow from './img/btn-i-know.png';
 import iconTips from './img/icon-tips.png';
 import qrcodeImg from './img/qrcode.png';
 import btnTest from './img/btn-test.png';
+import iconLive from './img/icon-live.png';
+import iconReplay from './img/icon-replay.png';
 
 // 初始化 Lucide 图标库
 function renderLucideIcons(root) {
@@ -457,6 +459,30 @@ function renderLucideIcons(root) {
             });
         }
 
+        function syncCardHeight(hasLive) {
+            if (window.innerWidth > 1080) {
+                var sidebarH = $('.course-sidebar').outerHeight() || 0;
+                if (sidebarH > 0) {
+                    if (hasLive) {
+                        var liveH = $('#dailyLiveCard').outerHeight(true) || 0;
+                        var remH = Math.max(480, sidebarH - liveH);
+                        $('#emptyLearningCard').css({ 'min-height': remH + 'px', 'padding-top': '60px' });
+                        $('#lockedLearningCard').css({ 'min-height': remH + 'px', 'padding-top': '60px' });
+                    } else {
+                        $('#emptyLearningCard').css({ 'min-height': sidebarH + 'px', 'padding-top': '130px' });
+                        $('#lockedLearningCard').css({ 'min-height': sidebarH + 'px', 'padding-top': '100px' });
+                    }
+                }
+            } else {
+                $('#emptyLearningCard').css({ 'min-height': '', 'padding-top': '' });
+                $('#lockedLearningCard').css({ 'min-height': '', 'padding-top': '' });
+            }
+        }
+
+        $(window).on('resize', function () {
+            syncCardHeight($('#dailyLiveCard').is(':visible'));
+        });
+
         // --- 当日有直播/直播回放卡片：折叠 / 展开 ---
         $('#btnLiveCollapse').on('click', function () {
             var $activeBody = $('#dailyLiveCard .live-card-body.active-body');
@@ -474,6 +500,7 @@ function renderLucideIcons(root) {
                     $text.text('展开');
                     $btn.addClass('is-collapsed');
                 }
+                syncCardHeight($('#dailyLiveCard').is(':visible'));
             });
         });
 
@@ -484,13 +511,18 @@ function renderLucideIcons(root) {
 
             var isLive = $(this).hasClass('tag-live');
             var isPlayback = $(this).hasClass('tag-playback');
+            var isLocked = $(this).data('locked') === true || $(this).data('day') == '20' || $(this).data('day') == '21';
             var colIndex = $(this).index() % 7;
             var isWeekend = (colIndex === 5 || colIndex === 6) || $(this).data('weekend') === true;
+            var isDone = $(this).hasClass('is-done');
 
             var $liveCard = $('#dailyLiveCard');
             var $mainContent = $('#courseMainContent');
             var $emptyCard = $('#emptyLearningCard');
+            var $emptyTitle = $emptyCard.find('.empty-content-title');
+            var $lockedCard = $('#lockedLearningCard');
             var $titleText = $('#liveCardTitleText');
+            var $liveTitleIcon = $('#liveTitleIcon');
             var $liveBody = $('#liveCardBody');
             var $playbackBody = $('#playbackCardBody');
             var $btn = $('#btnLiveCollapse');
@@ -503,30 +535,61 @@ function renderLucideIcons(root) {
 
                 if (isLive) {
                     $titleText.text('当日有直播');
+                    if ($liveTitleIcon.length) {
+                        $liveTitleIcon.attr('src', iconLive).attr('alt', '当日有直播');
+                    }
                     $liveBody.addClass('active-body').show();
                     $playbackBody.removeClass('active-body').hide();
                 } else {
                     $titleText.text('直播回放');
+                    if ($liveTitleIcon.length) {
+                        $liveTitleIcon.attr('src', iconReplay).attr('alt', '直播回放');
+                    }
                     $liveBody.removeClass('active-body').hide();
                     $playbackBody.addClass('active-body').show();
                 }
 
-                $liveCard.slideDown(250);
+                $liveCard.slideDown(250, function () {
+                    syncCardHeight(true);
+                });
 
-                if (isWeekend) {
-                    // 周末：下方展示“当日没有其他学习内容”，隐藏常规学习区
+                if (isLocked) {
+                    // 尚未解锁：展示“其他学习内容将在当日上午8点解锁”，隐藏常规区和空内容区
                     $mainContent.hide();
-                    $emptyCard.fadeIn(200, function () {
-                        renderLucideIcons($emptyCard[0]);
-                    });
-                } else {
-                    // 工作日：展示常规学习区，隐藏“无其他学习内容”卡片
                     $emptyCard.hide();
-                    $mainContent.fadeIn(200);
+                    $lockedCard.stop(true, true).fadeIn(200);
+                } else if (isWeekend) {
+                    // 周末有直播/回放：下方展示“当日没有其他学习内容”，隐藏常规学习区和未解锁区
+                    $mainContent.hide();
+                    $lockedCard.hide();
+                    $emptyTitle.text('当日没有其他学习内容');
+                    $emptyCard.stop(true, true).fadeIn(200);
+                } else {
+                    // 工作日且已解锁：展示常规学习区，隐藏未解锁区与“无其他学习内容”卡片
+                    $lockedCard.hide();
+                    $emptyCard.hide();
+                    $mainContent.stop(true, true).fadeIn(200);
                 }
-            } else {
+            } else if (isLocked) {
+                // 工作日尚未解锁且无直播（如21号）：无直播卡片，全区展示“其他学习内容将在当日上午8点解锁”，不弹窗
                 $liveCard.slideUp(200);
                 $emptyCard.hide();
+                $mainContent.hide();
+                syncCardHeight(false);
+                $lockedCard.stop(true, true).fadeIn(200);
+            } else if (isWeekend && !isDone) {
+                // 周末无安排（16/22/23/29/30号）：无直播/回放卡片，全区展示“当日没有学习内容”
+                $liveCard.slideUp(200);
+                $lockedCard.hide();
+                $mainContent.hide();
+                $emptyTitle.text('当日没有学习内容');
+                syncCardHeight(false);
+                $emptyCard.stop(true, true).fadeIn(200);
+            } else {
+                // 工作日常规学习日期
+                $liveCard.slideUp(200);
+                $emptyCard.hide();
+                $lockedCard.hide();
                 $mainContent.show();
                 showNoticeModal();
             }
