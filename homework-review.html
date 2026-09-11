@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>“童语同音”学前儿童普通话师资培训 - 教师批阅作业</title>
+    <script type="module" src="/style/main.js"></script>
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- 顶部标题与右上角个人菜单 -->
+        <header class="page-header course-header-title">
+            <img src="style/img/big-title.png" alt="“童语同音”学前儿童普通话师资培训" class="page-title-img">
+
+            <!-- 右上角“我的”用户菜单 -->
+            <div class="user-header-menu-wrap" id="userHeaderMenuWrap">
+                <button type="button" class="user-menu-pill" id="userMenuBtn" aria-expanded="false" aria-haspopup="true">
+                    <span class="user-pill-name">您好，张老师</span>
+                    <span class="user-pill-arrow">
+                        <i data-lucide="chevron-down" class="pill-arrow-icon"></i>
+                    </span>
+                </button>
+                <div class="user-dropdown-menu" id="userDropdownMenu">
+                    <a href="my-courses.html" class="menu-item" id="menuItemMyCourse">
+                        <i data-lucide="book-open" class="menu-item-icon"></i>
+                        <span>我的课程</span>
+                    </a>
+                    <a href="javascript:void(0);" class="menu-item" id="menuItemChangePwd">
+                        <i data-lucide="user" class="menu-item-icon"></i>
+                        <span>修改密码</span>
+                    </a>
+                    <a href="javascript:void(0);" class="menu-item menu-item-logout" id="menuItemLogout">
+                        <i data-lucide="log-out" class="menu-item-icon"></i>
+                        <span>退出登录</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- 教师批阅主内容布局 -->
+        <main class="homework-review-layout">
+            <!-- 左侧作业列表卡片导航 -->
+            <aside class="hw-sidebar-card">
+                <div class="hw-sidebar-inner">
+                    <ul class="hw-menu-list" id="hwMenuList">
+                        <li class="hw-menu-item active" data-hw-id="1" data-title="作业一：声母发音训练" data-unreviewed="24" data-reviewed="354">
+                            <div class="hw-item-btn">
+                                <img src="style/img/icon-homework-btn.png" alt="作业图标" class="hw-item-icon">
+                                <span class="hw-item-text">作业XXXXXX</span>
+                                <span class="hw-item-dot" title="有待批阅作业"></span>
+                            </div>
+                        </li>
+                        <li class="hw-menu-item" data-hw-id="2" data-title="作业二：韵母辨读测试" data-unreviewed="18" data-reviewed="360">
+                            <div class="hw-item-btn">
+                                <img src="style/img/icon-homework-btn.png" alt="作业图标" class="hw-item-icon">
+                                <span class="hw-item-text">作业XXXXXX</span>
+                            </div>
+                        </li>
+                        <li class="hw-menu-item" data-hw-id="3" data-title="作业三：声调与朗读练习" data-unreviewed="12" data-reviewed="366">
+                            <div class="hw-item-btn">
+                                <img src="style/img/icon-homework-btn.png" alt="作业图标" class="hw-item-icon">
+                                <span class="hw-item-text">作业XXXXXX</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- 右侧学员作业批阅主卡片 -->
+            <section class="hw-main-card">
+                <!-- 顶部未完成/已完成切换 Tab 栏 -->
+                <div class="hw-card-tabs-header">
+                    <div class="hw-tab-btn active" id="tabUnfinished" data-status="unreviewed">
+                        <span class="hw-tab-title">未完成批阅</span>
+                        <span class="hw-tab-count" id="countUnfinished">(24)</span>
+                    </div>
+                    <div class="hw-tab-btn" id="tabFinished" data-status="reviewed">
+                        <span class="hw-tab-title">已完成批阅</span>
+                        <span class="hw-tab-count" id="countFinished">(354)</span>
+                    </div>
+                </div>
+
+                <!-- 卡片内容区域：学员提交列表 -->
+                <div class="hw-card-body">
+                    <!-- 未完成批阅列表 -->
+                    <div class="hw-student-panel active" id="panelUnfinished">
+                        <ul class="hw-student-list" id="unreviewedStudentList">
+                            <li class="hw-student-row" data-id="101" data-name="昵称xxxxxxxx" data-duration="01:25" data-time="2026-09-09 15:42" title="点击开始作业批阅">
+                                <div class="hw-student-info">
+                                    <div class="hw-avatar-wrap">
+                                        <img src="style/img/avt.png" alt="学员头像" class="hw-student-avatar">
+                                    </div>
+                                    <span class="hw-student-name">昵称xxxxxxxx</span>
+                                </div>
+                                <div class="hw-student-action">
+                                    <span class="hw-audio-duration">时长: 01:25</span>
+                                </div>
+                            </li>
+                            <li class="hw-student-row" data-id="102" data-name="昵称xxxxxxxx" data-duration="00:58" data-time="2026-09-09 16:10" title="点击开始作业批阅">
+                                <div class="hw-student-info">
+                                    <div class="hw-avatar-wrap">
+                                        <img src="style/img/avt.png" alt="学员头像" class="hw-student-avatar">
+                                    </div>
+                                    <span class="hw-student-name">昵称xxxxxxxx</span>
+                                </div>
+                                <div class="hw-student-action">
+                                    <span class="hw-audio-duration">时长: 00:58</span>
+                                </div>
+                            </li>
+                            <li class="hw-student-row" data-id="103" data-name="昵称xxxxxxxx" data-duration="01:42" data-time="2026-09-09 16:35" title="点击开始作业批阅">
+                                <div class="hw-student-info">
+                                    <div class="hw-avatar-wrap">
+                                        <img src="style/img/avt.png" alt="学员头像" class="hw-student-avatar">
+                                    </div>
+                                    <span class="hw-student-name">昵称xxxxxxxx</span>
+                                </div>
+                                <div class="hw-student-action">
+                                    <span class="hw-audio-duration">时长: 01:42</span>
+                                </div>
+                            </li>
+                            <li class="hw-student-row" data-id="104" data-name="昵称xxxxxxxx" data-duration="00:49" data-time="2026-09-09 17:02" title="点击开始作业批阅">
+                                <div class="hw-student-info">
+                                    <div class="hw-avatar-wrap">
+                                        <img src="style/img/avt.png" alt="学员头像" class="hw-student-avatar">
+                                    </div>
+                                    <span class="hw-student-name">昵称xxxxxxxx</span>
+                                </div>
+                                <div class="hw-student-action">
+                                    <span class="hw-audio-duration">时长: 00:49</span>
+                                </div>
+                            </li>
+                            <li class="hw-student-row" data-id="105" data-name="昵称xxxxxxxx" data-duration="01:15" data-time="2026-09-09 17:28" title="点击开始作业批阅">
+                                <div class="hw-student-info">
+                                    <div class="hw-avatar-wrap">
+                                        <img src="style/img/avt.png" alt="学员头像" class="hw-student-avatar">
+                                    </div>
+                                    <span class="hw-student-name">昵称xxxxxxxx</span>
+                                </div>
+                                <div class="hw-student-action">
+                                    <span class="hw-audio-duration">时长: 01:15</span>
+                                </div>
+                            </li>
+                            <li class="hw-student-row" data-id="106" data-name="昵称xxxxxxxx" data-duration="01:08" data-time="2026-09-09 17:50">
+                                <div class="hw-student-info">
+                                    <div class="hw-avatar-wrap">
+                                        <img src="style/img/avt.png" alt="学员头像" class="hw-student-avatar">
+                                    </div>
+                                    <span class="hw-student-name">昵称xxxxxxxx</span>
+                                </div>
+                                <div class="hw-student-action">
+                                    <span class="hw-audio-duration">时长: mm:ss</span>
+                                </div>
+                            </li>
+                            <li class="hw-student-row" data-id="107" data-name="昵称xxxxxxxx" data-duration="00:52" data-time="2026-09-09 18:14">
+                                <div class="hw-student-info">
+                                    <div class="hw-avatar-wrap">
+                                        <img src="style/img/avt.png" alt="学员头像" class="hw-student-avatar">
+                                    </div>
+                                    <span class="hw-student-name">昵称xxxxxxxx</span>
+                                </div>
+                                <div class="hw-student-action">
+                                    <span class="hw-audio-duration">时长: mm:ss</span>
+                                </div>
+                            </li>
+                            <li class="hw-student-row" data-id="108" data-name="昵称xxxxxxxx" data-duration="01:30" data-time="2026-09-09 18:40">
+                                <div class="hw-student-info">
+                                    <div class="hw-avatar-wrap">
+                                        <img src="style/img/avt.png" alt="学员头像" class="hw-student-avatar">
+                                    </div>
+                                    <span class="hw-student-name">昵称xxxxxxxx</span>
+                                </div>
+                                <div class="hw-student-action">
+                                    <span class="hw-audio-duration">时长: mm:ss</span>
+                                </div>
+                            </li>
+                            <li class="hw-student-row" data-id="109" data-name="昵称xxxxxxxx" data-duration="01:12" data-time="2026-09-09 19:05">
+                                <div class="hw-student-info">
+                                    <div class="hw-avatar-wrap">
+                                        <img src="style/img/avt.png" alt="学员头像" class="hw-student-avatar">
+                                    </div>
+                                    <span class="hw-student-name">昵称xxxxxxxx</span>
+                                </div>
+                                <div class="hw-student-action">
+                                    <span class="hw-audio-duration">时长: mm:ss</span>
+                                </div>
+                            </li>
+                            <li class="hw-student-row" data-id="110" data-name="昵称xxxxxxxx" data-duration="00:46" data-time="2026-09-09 19:22">
+                                <div class="hw-student-info">
+                                    <div class="hw-avatar-wrap">
+                                        <img src="style/img/avt.png" alt="学员头像" class="hw-student-avatar">
+                                    </div>
+                                    <span class="hw-student-name">昵称xxxxxxxx</span>
+                                </div>
+                                <div class="hw-student-action">
+                                    <span class="hw-audio-duration">时长: mm:ss</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- 已完成批阅列表 -->
+                    <div class="hw-student-panel" id="panelFinished">
+                        <ul class="hw-student-list" id="reviewedStudentList">
+                            <li class="hw-student-row hw-student-reviewed" data-id="201" data-name="昵称xxxxxxxx" data-duration="01:10">
+                                <div class="hw-student-info">
+                                    <div class="hw-avatar-wrap">
+                                        <img src="style/img/avt.png" alt="学员头像" class="hw-student-avatar">
+                                    </div>
+                                    <span class="hw-student-name">昵称xxxxxxxx</span>
+                                </div>
+                                <div class="hw-student-action">
+                                    <span class="hw-audio-duration">时长: mm:ss</span>
+                                    <span class="hw-student-score">分数：XX</span>
+                                </div>
+                            </li>
+                            <li class="hw-student-row hw-student-reviewed" data-id="202" data-name="昵称xxxxxxxx" data-duration="00:55">
+                                <div class="hw-student-info">
+                                    <div class="hw-avatar-wrap">
+                                        <img src="style/img/avt.png" alt="学员头像" class="hw-student-avatar">
+                                    </div>
+                                    <span class="hw-student-name">昵称xxxxxxxx</span>
+                                </div>
+                                <div class="hw-student-action">
+                                    <span class="hw-audio-duration">时长: mm:ss</span>
+                                    <span class="hw-student-score">分数：XX</span>
+                                </div>
+                            </li>
+                            <li class="hw-student-row hw-student-reviewed" data-id="203" data-name="昵称xxxxxxxx" data-duration="01:32">
+                                <div class="hw-student-info">
+                                    <div class="hw-avatar-wrap">
+                                        <img src="style/img/avt.png" alt="学员头像" class="hw-student-avatar">
+                                    </div>
+                                    <span class="hw-student-name">昵称xxxxxxxx</span>
+                                </div>
+                                <div class="hw-student-action">
+                                    <span class="hw-audio-duration">时长: mm:ss</span>
+                                    <span class="hw-student-score">分数：XX</span>
+                                </div>
+                            </li>
+                            <li class="hw-student-row hw-student-reviewed" data-id="204" data-name="昵称xxxxxxxx" data-duration="00:48">
+                                <div class="hw-student-info">
+                                    <div class="hw-avatar-wrap">
+                                        <img src="style/img/avt.png" alt="学员头像" class="hw-student-avatar">
+                                    </div>
+                                    <span class="hw-student-name">昵称xxxxxxxx</span>
+                                </div>
+                                <div class="hw-student-action">
+                                    <span class="hw-audio-duration">时长: mm:ss</span>
+                                    <span class="hw-student-score">分数：XX</span>
+                                </div>
+                            </li>
+                            <li class="hw-student-row hw-student-reviewed" data-id="205" data-name="昵称xxxxxxxx" data-duration="01:15">
+                                <div class="hw-student-info">
+                                    <div class="hw-avatar-wrap">
+                                        <img src="style/img/avt.png" alt="学员头像" class="hw-student-avatar">
+                                    </div>
+                                    <span class="hw-student-name">昵称xxxxxxxx</span>
+                                </div>
+                                <div class="hw-student-action">
+                                    <span class="hw-audio-duration">时长: mm:ss</span>
+                                    <span class="hw-student-score">分数：XX</span>
+                                </div>
+                            </li>
+                            <li class="hw-student-row hw-student-reviewed" data-id="206" data-name="昵称xxxxxxxx" data-duration="01:05">
+                                <div class="hw-student-info">
+                                    <div class="hw-avatar-wrap">
+                                        <img src="style/img/avt.png" alt="学员头像" class="hw-student-avatar">
+                                    </div>
+                                    <span class="hw-student-name">昵称xxxxxxxx</span>
+                                </div>
+                                <div class="hw-student-action">
+                                    <span class="hw-audio-duration">时长: mm:ss</span>
+                                    <span class="hw-student-score">分数：XX</span>
+                                </div>
+                            </li>
+                            <li class="hw-student-row hw-student-reviewed" data-id="207" data-name="昵称xxxxxxxx" data-duration="00:52">
+                                <div class="hw-student-info">
+                                    <div class="hw-avatar-wrap">
+                                        <img src="style/img/avt.png" alt="学员头像" class="hw-student-avatar">
+                                    </div>
+                                    <span class="hw-student-name">昵称xxxxxxxx</span>
+                                </div>
+                                <div class="hw-student-action">
+                                    <span class="hw-audio-duration">时长: mm:ss</span>
+                                    <span class="hw-student-score">分数：XX</span>
+                                </div>
+                            </li>
+                            <li class="hw-student-row hw-student-reviewed" data-id="208" data-name="昵称xxxxxxxx" data-duration="01:28">
+                                <div class="hw-student-info">
+                                    <div class="hw-avatar-wrap">
+                                        <img src="style/img/avt.png" alt="学员头像" class="hw-student-avatar">
+                                    </div>
+                                    <span class="hw-student-name">昵称xxxxxxxx</span>
+                                </div>
+                                <div class="hw-student-action">
+                                    <span class="hw-audio-duration">时长: mm:ss</span>
+                                    <span class="hw-student-score">分数：XX</span>
+                                </div>
+                            </li>
+                            <li class="hw-student-row hw-student-reviewed" data-id="209" data-name="昵称xxxxxxxx" data-duration="01:12">
+                                <div class="hw-student-info">
+                                    <div class="hw-avatar-wrap">
+                                        <img src="style/img/avt.png" alt="学员头像" class="hw-student-avatar">
+                                    </div>
+                                    <span class="hw-student-name">昵称xxxxxxxx</span>
+                                </div>
+                                <div class="hw-student-action">
+                                    <span class="hw-audio-duration">时长: mm:ss</span>
+                                    <span class="hw-student-score">分数：XX</span>
+                                </div>
+                            </li>
+                            <li class="hw-student-row hw-student-reviewed" data-id="210" data-name="昵称xxxxxxxx" data-duration="00:46">
+                                <div class="hw-student-info">
+                                    <div class="hw-avatar-wrap">
+                                        <img src="style/img/avt.png" alt="学员头像" class="hw-student-avatar">
+                                    </div>
+                                    <span class="hw-student-name">昵称xxxxxxxx</span>
+                                </div>
+                                <div class="hw-student-action">
+                                    <span class="hw-audio-duration">时长: mm:ss</span>
+                                    <span class="hw-student-score">分数：XX</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- 触底动态加载状态指示条 -->
+                    <div class="hw-loading-status" id="hwLoadingStatus" style="display: none;"></div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 悬浮 AI 伴学组件 -->
+        <div class="ai-companion-btn" id="aiCompanionBtn" title="AI伴学助手">
+            <img src="style/img/AI-companion.png" alt="AI伴学助手">
+        </div>
+
+        <!-- 页面底部信息 -->
+        <footer class="page-footer">
+            <p>网络教育数字化学习资源中心 版权所有</p>
+            <p>技术支持：国开泛在（北京）教育科技有限公司</p>
+            <p>ICP备xxxxxxxx号 公安网备xxxxxx号</p>
+        </footer>
+    </div>
+</body>
+</html>

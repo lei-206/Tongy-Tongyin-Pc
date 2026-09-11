@@ -1,10 +1,12 @@
 {
   "name": "tongyu-register",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "vite --host 0.0.0.0 --port 3000",
+    "build": "node --max-old-space-size=8192 ./node_modules/vite/bin/vite.js build",
+    "preview": "vite preview --host 0.0.0.0 --port 3000",
+    "lint": "echo ok"
   },
   "devDependencies": {
     "jquery": "^4.0.0",
@@ -12,6 +14,7 @@
     "vite": "^5.4.21"
   },
   "dependencies": {
+    "echarts": "^6.1.0",
     "lucide": "^1.41.0",
     "sweetalert2": "^11.26.25"
   }

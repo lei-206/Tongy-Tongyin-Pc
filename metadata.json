@@ -1,0 +1,10 @@
+{
+  "name": "“童语同音”学前儿童普通话师资培训平台",
+  "description": "“童语同音”学前儿童普通话师资培训线上培训与报名系统",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

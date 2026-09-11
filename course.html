@@ -140,16 +140,18 @@
                         <span class="notice-title">通知公告<span class="red-badge-dot"></span></span>
                     </div>
                     <div class="notice-btn" id="btnPersonalNotice" role="button" tabindex="0">
-                        <img src="style/img/icon-personal-inform.png" alt="个人公告" class="notice-icon">
-                        <span class="notice-title">个人公告</span>
+                        <img src="style/img/icon-personal-inform.png" alt="个人中心" class="notice-icon">
+                        <span class="notice-title">个人中心</span>
                     </div>
                 </div>
             </aside>
 
             <!-- 右侧区域 -->
             <div class="course-right-wrap">
-                <!-- 当日有直播卡片 -->
-                <section class="daily-live-card" id="dailyLiveCard" style="display: none;" aria-label="当日有直播">
+                <!-- 课程学习主内容区 -->
+                <div class="course-study-content" id="courseStudyContent">
+                    <!-- 当日有直播卡片 -->
+                    <section class="daily-live-card" id="dailyLiveCard" style="display: none;" aria-label="当日有直播">
                     <div class="live-card-header">
                         <div class="live-header-title">
                             <img src="style/img/icon-live.png" alt="LIVE" class="live-title-icon" id="liveTitleIcon">
@@ -364,29 +366,636 @@
 
                         <!-- 分页 -->
                         <div class="common-pagination" id="supportPagination">
-                            <span class="pagination-total">共 50 条</span>
-                            <div class="pagination-pages">
-                                <button type="button" class="page-btn page-prev disabled" id="btnPagePrev" aria-label="上一页">
-                                    <i data-lucide="chevron-left" class="page-arrow-icon"></i>
-                                </button>
-                                <button type="button" class="page-btn page-num active" data-page="1">1</button>
-                                <button type="button" class="page-btn page-num" data-page="2">2</button>
-                                <button type="button" class="page-btn page-num" data-page="3">3</button>
-                                <button type="button" class="page-btn page-num" data-page="4">4</button>
-                                <span class="page-ellipsis">...</span>
-                                <button type="button" class="page-btn page-num" data-page="10">10</button>
-                                <button type="button" class="page-btn page-next" id="btnPageNext" aria-label="下一页">
-                                    <i data-lucide="chevron-right" class="page-arrow-icon"></i>
-                                </button>
-                            </div>
-                            <div class="pagination-jumper">
-                                <span>前往</span>
-                                <input type="number" min="1" max="10" value="1" class="jumper-input" id="pageJumperInput">
-                                <span>页</span>
-                            </div>
+                            <button type="button" class="page-btn page-prev disabled" id="btnPagePrev" title="上一页">
+                                <i data-lucide="chevron-left" class="page-arrow-icon"></i>
+                            </button>
+                            <button type="button" class="page-btn page-num active" data-page="1">1</button>
+                            <button type="button" class="page-btn page-num" data-page="2">2</button>
+                            <button type="button" class="page-btn page-num" data-page="3">3</button>
+                            <button type="button" class="page-btn page-num" data-page="4">4</button>
+                            <button type="button" class="page-btn page-num" data-page="5">5</button>
+                            <span class="page-ellipsis">...</span>
+                            <button type="button" class="page-btn page-num" data-page="9">9</button>
+                            <button type="button" class="page-btn page-num" data-page="10">10</button>
+                            <button type="button" class="page-btn page-next" id="btnPageNext" title="下一页">
+                                <i data-lucide="chevron-right" class="page-arrow-icon"></i>
+                            </button>
+                            <span class="pagination-total">共 10 页</span>
                         </div>
                     </div>
                 </section>
+                </div>
+                <!-- /#courseStudyContent -->
+
+                <!-- 个人中心内容区 (默认隐藏，点击侧栏个人中心/顶栏个人中心切出) -->
+                <div class="course-profile-content" id="courseProfileContent" style="display: none;">
+                    <section class="profile-main-card">
+                        <!-- 顶部三项 Folder-Tab 文件夹式标签栏 -->
+                        <div class="profile-card-tabs-header">
+                            <div class="profile-tab-btn active" id="tabProfileInfo" data-target="panelProfileInfo">
+                                <span class="profile-tab-title">个人信息</span>
+                            </div>
+                            <div class="profile-tab-btn" id="tabProfileScore" data-target="panelProfileScore">
+                                <span class="profile-tab-title">我的成绩</span>
+                            </div>
+                            <div class="profile-tab-btn" id="tabProfileArchive" data-target="panelProfileArchive">
+                                <span class="profile-tab-title">成长档案</span>
+                            </div>
+                        </div>
+
+                        <!-- 卡片内容区域 -->
+                        <div class="profile-card-body">
+                            <!-- Tab 1: 个人信息面板 -->
+                            <div class="profile-panel active" id="panelProfileInfo">
+                                <!-- 个人信息标题 -->
+                                <div class="profile-section-title">
+                                    <h2 class="resource-heading profile-title-text" id="profileInfoTitle">个人信息</h2>
+                                </div>
+
+                                <!-- 个人信息表单 -->
+                                <form class="profile-form" id="profileForm" onsubmit="return false;">
+                                    <!-- 1. 姓名 -->
+                                    <div class="profile-form-row">
+                                        <label class="profile-label">姓&emsp;&emsp;名：</label>
+                                        <div class="profile-field-wrap">
+                                            <span class="profile-readonly-text">张三</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- 2. 所属区域 -->
+                                    <div class="profile-form-row">
+                                        <label class="profile-label">所属区域：</label>
+                                        <div class="profile-field-wrap profile-region-wrap">
+                                            <span class="profile-readonly-text profile-province-text">河北省</span>
+                                            <div class="profile-select-box">
+                                                <select id="selectCity" class="profile-select">
+                                                    <option value="石家庄市" selected>石家庄市</option>
+                                                    <option value="唐山市">唐山市</option>
+                                                    <option value="保定市">保定市</option>
+                                                    <option value="邯郸市">邯郸市</option>
+                                                </select>
+                                                <i data-lucide="chevron-down" class="select-chevron"></i>
+                                            </div>
+                                            <div class="profile-select-box">
+                                                <select id="selectDistrict" class="profile-select">
+                                                    <option value="XXXX区" selected>XXXX区</option>
+                                                    <option value="长安区">长安区</option>
+                                                    <option value="桥西区">桥西区</option>
+                                                    <option value="裕华区">裕华区</option>
+                                                </select>
+                                                <i data-lucide="chevron-down" class="select-chevron"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 3. 所在学校 -->
+                                    <div class="profile-form-row">
+                                        <label class="profile-label"><span class="required-star">*</span>所在学校：</label>
+                                        <div class="profile-field-wrap">
+                                            <input type="text" id="inputSchool" class="profile-input" value="xxxxxxxx学校" placeholder="请输入所在学校名称">
+                                        </div>
+                                    </div>
+
+                                    <!-- 4. 身份证号 -->
+                                    <div class="profile-form-row">
+                                        <label class="profile-label"><span class="required-star">*</span>身份证号：</label>
+                                        <div class="profile-field-wrap">
+                                            <input type="text" id="inputIdCard" class="profile-input" value="110106xxxxxxxxx1234 (回显时隐藏生日位)" placeholder="请输入身份证号">
+                                        </div>
+                                    </div>
+
+                                    <!-- 5. 关联的微信 -->
+                                    <div class="profile-form-row">
+                                        <label class="profile-label"><span class="required-star">*</span>关联的微信：</label>
+                                        <div class="profile-field-wrap profile-wechat-wrap">
+                                            <div class="hw-avatar-wrap">
+                                                <img src="style/img/avt.png" alt="微信头像" class="hw-student-avatar">
+                                            </div>
+                                            <span class="profile-wechat-name">昵称xxxxxxxx</span>
+                                            <a href="javascript:void(0);" class="profile-action-link" id="btnChangeWechat">更换微信</a>
+                                            <span class="profile-warning-tip">微信仅可更换一次！</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- 6. 手机号 -->
+                                    <div class="profile-form-row">
+                                        <label class="profile-label"><span class="required-star">*</span>手&nbsp;机&nbsp;号：</label>
+                                        <div class="profile-field-wrap profile-phone-wrap">
+                                            <span class="profile-phone-text">186****1234 (回显时隐藏中间4位)</span>
+                                            <a href="javascript:void(0);" class="profile-action-link" id="btnChangePhone">修改</a>
+                                        </div>
+                                    </div>
+
+                                    <!-- 7. 短信验证码 -->
+                                    <div class="profile-form-row">
+                                        <label class="profile-label"><span class="required-star">*</span>短信验证码：</label>
+                                        <div class="profile-field-wrap profile-code-wrap">
+                                            <input type="text" id="inputSmsCode" class="profile-input profile-code-input" placeholder="" maxlength="6">
+                                            <button type="button" class="btn-get-code" id="btnGetCode">获取验证码</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- 8. 确认修改按钮 -->
+                                    <div class="profile-submit-wrap">
+                                        <button type="button" class="btn-profile-submit" id="btnSubmitProfile" aria-label="确认修改">
+                                            <img src="style/img/btn-modify.png" alt="确认修改" class="btn-modify-img">
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Tab 2: 我的成绩面板 -->
+                            <div class="profile-panel" id="panelProfileScore">
+                                <div class="profile-section-title">
+                                    <h2 class="resource-heading profile-title-text" id="profileScoreTitle">我的成绩</h2>
+                                </div>
+
+                                <div class="my-score-section">
+                                    <!-- 成绩明细表格 -->
+                                    <div class="my-score-table-wrap">
+                                        <table class="my-score-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>普通话水平初测</th>
+                                                    <th>作业xxx</th>
+                                                    <th>作业xx</th>
+                                                    <th>作业xxxxxx</th>
+                                                    <th>普通话水平终测</th>
+                                                    <th>直播附加分</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>85</td>
+                                                    <td>90</td>
+                                                    <td>95</td>
+                                                    <td>75</td>
+                                                    <td>95</td>
+                                                    <td>8</td>
+                                                </tr>
+                                                <tr class="score-full-row">
+                                                    <td colspan="6">必学视频全部看完的天数：20天</td>
+                                                </tr>
+                                                <tr class="score-summary-row">
+                                                    <td colspan="3">
+                                                        <div class="score-summary-main">最终总成绩：448</div>
+                                                        <div class="score-summary-sub">总成绩=初测成绩+所有作业成绩+终测成绩+附加分</div>
+                                                    </td>
+                                                    <td colspan="3">
+                                                        <div class="score-summary-main">班内成绩排名：16</div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <!-- 查看证书按钮 -->
+                                    <div class="score-action-wrap">
+                                        <button type="button" class="btn-view-cert-pill" id="btnViewCert">查看证书</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tab 3: 成长档案面板 -->
+                            <div class="profile-panel" id="panelProfileArchive">
+                                <div class="profile-section-title">
+                                    <h2 class="resource-heading profile-title-text" id="profileArchiveTitle">成长档案</h2>
+                                </div>
+
+                                <!-- 成长档案图表区 -->
+                                <div class="archive-charts-wrap">
+                                    <!-- 1. 视频观看曲线 (全通栏) -->
+                                    <div class="archive-chart-card full-width">
+                                        <div class="archive-chart-header">
+                                            <h3 class="archive-chart-title">视频观看曲线</h3>
+                                        </div>
+                                        <div class="archive-chart-dom" id="chartVideoWatch"></div>
+                                    </div>
+
+                                    <!-- 2. 双列图表区 (小测成绩曲线 & 每日完成次数) -->
+                                    <div class="archive-charts-row">
+                                        <div class="archive-chart-card">
+                                            <div class="archive-chart-header">
+                                                <h3 class="archive-chart-title">普通话小测成绩曲线</h3>
+                                            </div>
+                                            <div class="archive-chart-dom" id="chartQuizScore"></div>
+                                        </div>
+                                        <div class="archive-chart-card">
+                                            <div class="archive-chart-header">
+                                                <h3 class="archive-chart-title">普通话小测每日完成次数</h3>
+                                            </div>
+                                            <div class="archive-chart-dom" id="chartQuizCount"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 3. 双列图表区 (初测/终测对比 & 多维能力模型) -->
+                                    <div class="archive-charts-row">
+                                        <div class="archive-chart-card">
+                                            <div class="archive-chart-header">
+                                                <h3 class="archive-chart-title">初测/终测成绩对比</h3>
+                                            </div>
+                                            <div class="archive-chart-dom" id="chartScoreCompare"></div>
+                                        </div>
+                                        <div class="archive-chart-card">
+                                            <div class="archive-chart-header">
+                                                <h3 class="archive-chart-title">多维能力模型</h3>
+                                            </div>
+                                            <div class="archive-chart-dom" id="chartRadarModel"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- 通知公告内容区 (默认隐藏，点击左侧通知公告按钮切换) -->
+                <div class="course-notice-content" id="courseNoticeContent" style="display: none;">
+                    <section class="notice-main-card">
+                        <!-- 顶部标题区 (与其他页面 resource-heading 风格一致) -->
+                        <div class="notice-section-title">
+                            <h2 class="notice-heading">通知公告</h2>
+                            <button type="button" class="btn-notice-read-all" id="btnNoticeReadAll">
+                                <img src="style/img/icon-read-over.png" alt="已读所有" class="notice-read-icon">
+                                <span>已读所有</span>
+                            </button>
+                        </div>
+
+                        <!-- 通知列表 -->
+                        <div class="notice-list" id="noticeList">
+                            <div class="notice-item">
+                                <h3 class="notice-item-title">标题名称标题名称标题名称</h3>
+                                <div class="notice-item-date">yyyy-mm-dd hh:mm:ss</div>
+                                <div class="notice-item-summary">自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义。</div>
+                                <div class="notice-item-divider"></div>
+                            </div>
+                            <div class="notice-item">
+                                <h3 class="notice-item-title">标题名称标题名称标题名称</h3>
+                                <div class="notice-item-date">yyyy-mm-dd hh:mm:ss</div>
+                                <div class="notice-item-summary">自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义。</div>
+                                <div class="notice-item-divider"></div>
+                            </div>
+                            <div class="notice-item">
+                                <h3 class="notice-item-title">标题名称标题名称标题名称</h3>
+                                <div class="notice-item-date">yyyy-mm-dd hh:mm:ss</div>
+                                <div class="notice-item-summary">自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义。</div>
+                                <div class="notice-item-divider"></div>
+                            </div>
+                            <div class="notice-item">
+                                <h3 class="notice-item-title">标题名称标题名称标题名称</h3>
+                                <div class="notice-item-date">yyyy-mm-dd hh:mm:ss</div>
+                                <div class="notice-item-summary">自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义。</div>
+                                <div class="notice-item-divider"></div>
+                            </div>
+                            <div class="notice-item">
+                                <h3 class="notice-item-title">标题名称标题名称标题名称</h3>
+                                <div class="notice-item-date">yyyy-mm-dd hh:mm:ss</div>
+                                <div class="notice-item-summary">自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义。</div>
+                                <div class="notice-item-divider"></div>
+                            </div>
+                            <div class="notice-item">
+                                <h3 class="notice-item-title">标题名称标题名称标题名称</h3>
+                                <div class="notice-item-date">yyyy-mm-dd hh:mm:ss</div>
+                                <div class="notice-item-summary">自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义。</div>
+                                <div class="notice-item-divider"></div>
+                            </div>
+                            <div class="notice-item">
+                                <h3 class="notice-item-title">标题名称标题名称标题名称</h3>
+                                <div class="notice-item-date">yyyy-mm-dd hh:mm:ss</div>
+                                <div class="notice-item-summary">自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义。</div>
+                                <div class="notice-item-divider"></div>
+                            </div>
+                            <div class="notice-item">
+                                <h3 class="notice-item-title">标题名称标题名称标题名称</h3>
+                                <div class="notice-item-date">yyyy-mm-dd hh:mm:ss</div>
+                                <div class="notice-item-summary">自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义。</div>
+                            </div>
+                        </div>
+
+                        <!-- 分页 -->
+                        <div class="notice-pagination" id="noticePagination">
+                            <button type="button" class="notice-page-btn notice-page-prev disabled" id="btnNoticePrev" title="上一页">
+                                <i data-lucide="chevron-left" class="notice-page-arrow-icon"></i>
+                            </button>
+                            <button type="button" class="notice-page-num active" data-page="1">1</button>
+                            <button type="button" class="notice-page-num" data-page="2">2</button>
+                            <button type="button" class="notice-page-num" data-page="3">3</button>
+                            <button type="button" class="notice-page-num" data-page="4">4</button>
+                            <button type="button" class="notice-page-num" data-page="5">5</button>
+                            <span class="notice-page-ellipsis">...</span>
+                            <button type="button" class="notice-page-num" data-page="92">92</button>
+                            <button type="button" class="notice-page-num" data-page="93">93</button>
+                            <button type="button" class="notice-page-btn notice-page-next" id="btnNoticeNext" title="下一页">
+                                <i data-lucide="chevron-right" class="notice-page-arrow-icon"></i>
+                            </button>
+                            <span class="notice-page-total">共 93 页</span>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- 学员作业内容区 (默认隐藏，点击左侧作业按钮切换) -->
+                <div class="course-homework-content" id="courseHomeworkContent" style="display: none;">
+                    <section class="homework-student-card">
+                        <!-- 顶部 3 个作业 Tab 栏 -->
+                        <div class="homework-card-tabs-header">
+                            <div class="hw-tab-item active" data-hw-id="1" data-status="unfinished" data-title="作业标题作业标题作业标题" data-deadline="yyyy-mm-dd hh:mm:ss">
+                                <span class="hw-tab-badge badge-unfinished">未完成</span>
+                                <span class="hw-tab-title">作业XXXXXX</span>
+                            </div>
+                            <div class="hw-tab-item" data-hw-id="2" data-status="completed" data-title="作业标题作业标题作业标题" data-deadline="yyyy-mm-dd hh:mm:ss">
+                                <span class="hw-tab-badge badge-completed">已完成</span>
+                                <span class="hw-tab-title">作业XXXXXX</span>
+                            </div>
+                            <div class="hw-tab-item" data-hw-id="3" data-status="reviewed" data-title="作业标题作业标题作业标题" data-deadline="yyyy-mm-dd hh:mm:ss">
+                                <span class="hw-tab-badge badge-reviewed">已批阅</span>
+                                <span class="hw-tab-title">作业XXXXXX</span>
+                            </div>
+                        </div>
+
+                        <!-- 作业卡片内容主体 -->
+                        <div class="homework-card-body">
+                            <!-- 标题与光晕 -->
+                            <div class="hw-detail-title-wrap">
+                                <h2 class="hw-detail-title" id="hwDetailTitle">作业标题作业标题作业标题</h2>
+                                <div class="hw-detail-deadline" id="hwDetailDeadline">截止时间：yyyy-mm-dd hh:mm:ss</div>
+                            </div>
+
+                            <!-- 富文本要求内容 -->
+                            <div class="hw-rich-content">
+                                <p>自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义。</p>
+                                <p>自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义。</p>
+                                <p>自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义。</p>
+                            </div>
+
+                            <!-- 底部作业操作与回显区 -->
+                            <!-- 1. 未完成状态操作区 -->
+                            <div class="hw-submit-panel" id="hwSubmitUnfinished">
+                                <!-- 录音完成后的播放回显行（默认隐藏，录音/上传完成后以滑出动画展示） -->
+                                <div class="hw-audio-play-row" id="hwUnfinishedAudioRow" style="display: none;">
+                                    <span class="hw-submit-label">我的作业：</span>
+                                    <div class="hw-player-bar" id="hwPlayerBar">
+                                        <button type="button" class="btn-audio-play" id="btnAudioPlay" title="播放/暂停">
+                                            <svg class="icon-play-triangle" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                                                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                                            </svg>
+                                        </button>
+                                        <div class="hw-player-track" id="hwPlayerTrack">
+                                            <div class="hw-player-fill" id="hwPlayerFill" style="width: 0%;"></div>
+                                        </div>
+                                        <div class="hw-player-time-box">
+                                            <span class="hw-player-time" id="hwPlayerTime">00:00 / 03:22</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="hw-submit-action-row" id="hwSubmitActionRow">
+                                    <span class="hw-submit-label" id="hwSubmitActionLabel">提交作业：</span>
+                                    <button type="button" class="btn-hw-action" id="btnHwRecord" title="按住并录制" data-state="initial">
+                                        <img src="style/img/btn-recording.png" alt="按住并录制" class="btn-hw-img" id="imgBtnHwRecord">
+                                        <!-- 按钮上的录音特效 HUD -->
+                                        <div class="btn-rec-hud" id="btnHwRecordHud" style="display: none;">
+                                            <span class="rec-dot-red"></span>
+                                            <span class="rec-text-status">录音中 <span class="rec-timer-num" id="btnHwRecTimer">00:01</span></span>
+                                            <div class="rec-sound-waves">
+                                                <span></span><span></span><span></span><span></span><span></span>
+                                            </div>
+                                        </div>
+                                    </button>
+                                    <span class="hw-submit-or">或</span>
+                                    <button type="button" class="btn-hw-action" id="btnHwUpload" title="上传文件" data-state="initial">
+                                        <img src="style/img/btn-upload.png" alt="上传文件" class="btn-hw-img" id="imgBtnHwUpload">
+                                    </button>
+                                    <input type="file" id="hwFileInput" accept=".mp3,.wav,.m4a,.aac" style="display: none;">
+                                </div>
+
+                                <div class="hw-submit-tips-row">
+                                    <div class="hw-tip-item">
+                                        <img src="style/img/icon-tips.png" alt="提示" class="hw-tip-icon">
+                                        <span class="hw-tip-text">需要有麦克风并授权<br>录音才可进行录制</span>
+                                    </div>
+                                    <div class="hw-tip-item">
+                                        <img src="style/img/icon-tips.png" alt="提示" class="hw-tip-icon">
+                                        <span class="hw-tip-text">如您的设备没有麦克风，<br>请直接上传MP3格式文件</span>
+                                    </div>
+                                </div>
+
+                                <div class="hw-submit-rehint">老师批阅前，可重新替换作业</div>
+                            </div>
+
+                            <!-- 2. 已完成状态操作区（根据设计图定制） -->
+                            <div class="hw-submit-panel hw-submit-completed" id="hwSubmitCompleted" style="display: none;">
+                                <!-- 我的作业：音频播放条 -->
+                                <div class="hw-audio-play-row">
+                                    <span class="hw-submit-label">我的作业：</span>
+                                    <div class="hw-player-bar" id="hwPlayerBarCompleted">
+                                        <button type="button" class="btn-audio-play" id="btnAudioPlayCompleted" title="播放/暂停">
+                                            <svg class="icon-play-triangle" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                                                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                                            </svg>
+                                        </button>
+                                        <div class="hw-player-track" id="hwPlayerTrackCompleted">
+                                            <div class="hw-player-fill" id="hwPlayerFillCompleted" style="width: 0%;"></div>
+                                        </div>
+                                        <div class="hw-player-time-box">
+                                            <span class="hw-player-time" id="hwPlayerTimeCompleted">00:00 / 03:22</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 重新录制 或 重新上传 按钮行 (采用 img 原版切图) -->
+                                <div class="hw-submit-action-row hw-re-action-row">
+                                    <button type="button" class="btn-hw-action" id="btnHwReRecord" title="重新录制" data-state="recorded">
+                                        <img src="style/img/btn-recording-repeat.png" alt="重新录制" class="btn-hw-img" id="imgBtnHwReRecord">
+                                        <!-- 按钮上的录音特效 HUD -->
+                                        <div class="btn-rec-hud" id="btnHwReRecordHud" style="display: none;">
+                                            <span class="rec-dot-red"></span>
+                                            <span class="rec-text-status">录音中 <span class="rec-timer-num" id="btnHwReRecTimer">00:01</span></span>
+                                            <div class="rec-sound-waves">
+                                                <span></span><span></span><span></span><span></span><span></span>
+                                            </div>
+                                        </div>
+                                    </button>
+                                    <span class="hw-submit-or">或</span>
+                                    <button type="button" class="btn-hw-action" id="btnHwReUpload" title="重新上传" data-state="recorded">
+                                        <img src="style/img/btn-upload-repeat.png" alt="重新上传" class="btn-hw-img" id="imgBtnHwReUpload">
+                                    </button>
+                                </div>
+
+                                <!-- 提示行 -->
+                                <div class="hw-submit-tips-row">
+                                    <div class="hw-tip-item">
+                                        <img src="style/img/icon-tips.png" alt="提示" class="hw-tip-icon">
+                                        <span class="hw-tip-text">需要有麦克风并授权<br>录音才可进行录制</span>
+                                    </div>
+                                    <div class="hw-tip-item">
+                                        <img src="style/img/icon-tips.png" alt="提示" class="hw-tip-icon">
+                                        <span class="hw-tip-text">如您的设备没有麦克风，<br>请直接上传MP3格式文件</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 3. 已批阅状态操作区 -->
+                            <div class="hw-submit-panel hw-submit-reviewed" id="hwSubmitReviewed" style="display: none;">
+                                <!-- 我的作业：音频播放条 -->
+                                <div class="hw-audio-play-row">
+                                    <span class="hw-submit-label">我的作业：</span>
+                                    <div class="hw-player-bar" id="hwPlayerBarReviewed">
+                                        <button type="button" class="btn-audio-play" id="btnAudioPlayReviewed" title="播放/暂停">
+                                            <svg class="icon-play-triangle" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                                                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                                            </svg>
+                                        </button>
+                                        <div class="hw-player-track" id="hwPlayerTrackReviewed">
+                                            <div class="hw-player-fill" id="hwPlayerFillReviewed" style="width: 0%;"></div>
+                                        </div>
+                                        <div class="hw-player-time-box">
+                                            <span class="hw-player-time" id="hwPlayerTimeReviewed">00:00 / 03:22</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 教师评分表 -->
+                                <div class="hw-score-row">
+                                    <span class="hw-submit-label">教师评分：</span>
+                                    <div class="hw-score-table-wrap">
+                                        <table class="hw-score-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>语音发声</th>
+                                                    <th>共鸣气息</th>
+                                                    <th>技巧运用</th>
+                                                    <th>情感表达</th>
+                                                    <th>总分（百分制）</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td id="scoreVoice">20</td>
+                                                    <td id="scoreResonance">20</td>
+                                                    <td id="scoreTechnique">20</td>
+                                                    <td id="scoreEmotion">20</td>
+                                                    <td id="scoreTotal">80</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="file" id="hwFileInput" accept="audio/*,.mp3,.wav,.m4a" style="display: none;">
+                        </div>
+                    </section>
+                </div>
+
+                <!-- 新思想专题内容区 (默认隐藏，点击左侧专题 Banner 切换) -->
+                <div class="course-xsx-topic-content" id="courseXsxTopicContent" style="display: none;">
+                    <section class="xsx-topic-card">
+                        <!-- 顶部红色标题区 -->
+                        <div class="xsx-topic-header">
+                            <img src="style/img/xsxTopic-title.png" alt="新思想专题" class="xsx-topic-title-img">
+                            <p class="xsx-topic-subtitle">本板块资源可按需自行取用</p>
+
+                            <!-- 搜索栏 -->
+                            <div class="xsx-topic-search">
+                                <input type="text" class="xsx-topic-search-input" id="xsxTopicSearchInput" placeholder="请输入资源名称" maxlength="50">
+                                <button type="button" class="xsx-topic-search-btn" id="xsxTopicSearchBtn" aria-label="搜索">
+                                    <img src="style/img/btn-seach.png" alt="搜索">
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 资源列表 -->
+                        <div class="xsx-topic-body">
+                            <div class="xsx-topic-list" id="xsxTopicList">
+                                <div class="xsx-topic-item">
+                                    <h3 class="xsx-topic-item-title">资源名称资源名称资源名称</h3>
+                                    <p class="xsx-topic-item-desc">自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容。</p>
+                                    <div class="xsx-topic-item-meta">
+                                        <span class="xsx-meta-label">根据实际情况：</span>
+                                        <span class="xsx-meta-value">在线预览或仅可下载，所有均可下载</span>
+                                    </div>
+                                </div>
+                                <div class="xsx-topic-item">
+                                    <h3 class="xsx-topic-item-title">资源名称资源名称资源名称</h3>
+                                    <p class="xsx-topic-item-desc">自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容。</p>
+                                    <div class="xsx-topic-item-meta">
+                                        <span class="xsx-meta-label">根据实际情况：</span>
+                                        <span class="xsx-meta-value">在线预览或仅可下载，所有均可下载</span>
+                                    </div>
+                                </div>
+                                <div class="xsx-topic-item">
+                                    <h3 class="xsx-topic-item-title">资源名称资源名称资源名称</h3>
+                                    <p class="xsx-topic-item-desc">自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容。</p>
+                                    <div class="xsx-topic-item-meta">
+                                        <span class="xsx-meta-label">根据实际情况：</span>
+                                        <span class="xsx-meta-value">在线预览或仅可下载，所有均可下载</span>
+                                    </div>
+                                </div>
+                                <div class="xsx-topic-item">
+                                    <h3 class="xsx-topic-item-title">资源名称资源名称资源名称</h3>
+                                    <p class="xsx-topic-item-desc">自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容。</p>
+                                    <div class="xsx-topic-item-meta">
+                                        <span class="xsx-meta-label">根据实际情况：</span>
+                                        <span class="xsx-meta-value">在线预览或仅可下载，所有均可下载</span>
+                                    </div>
+                                </div>
+                                <div class="xsx-topic-item">
+                                    <h3 class="xsx-topic-item-title">资源名称资源名称资源名称</h3>
+                                    <p class="xsx-topic-item-desc">自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容。</p>
+                                    <div class="xsx-topic-item-meta">
+                                        <span class="xsx-meta-label">根据实际情况：</span>
+                                        <span class="xsx-meta-value">在线预览或仅可下载，所有均可下载</span>
+                                    </div>
+                                </div>
+                                <div class="xsx-topic-item">
+                                    <h3 class="xsx-topic-item-title">资源名称资源名称资源名称</h3>
+                                    <p class="xsx-topic-item-desc">自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容。</p>
+                                    <div class="xsx-topic-item-meta">
+                                        <span class="xsx-meta-label">根据实际情况：</span>
+                                        <span class="xsx-meta-value">在线预览或仅可下载，所有均可下载</span>
+                                    </div>
+                                </div>
+                                <div class="xsx-topic-item">
+                                    <h3 class="xsx-topic-item-title">资源名称资源名称资源名称</h3>
+                                    <p class="xsx-topic-item-desc">自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容。</p>
+                                    <div class="xsx-topic-item-meta">
+                                        <span class="xsx-meta-label">根据实际情况：</span>
+                                        <span class="xsx-meta-value">在线预览或仅可下载，所有均可下载</span>
+                                    </div>
+                                </div>
+                                <div class="xsx-topic-item">
+                                    <h3 class="xsx-topic-item-title">资源名称资源名称资源名称</h3>
+                                    <p class="xsx-topic-item-desc">自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容自定义富文本内容。</p>
+                                    <div class="xsx-topic-item-meta">
+                                        <span class="xsx-meta-label">根据实际情况：</span>
+                                        <span class="xsx-meta-value">在线预览或仅可下载，所有均可下载</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 分页 -->
+                            <div class="xsx-topic-pagination" id="xsxTopicPagination">
+                                <button type="button" class="xsx-page-btn xsx-page-prev disabled" id="btnXsxTopicPrev" title="上一页">
+                                    <i data-lucide="chevron-left" class="xsx-page-arrow-icon"></i>
+                                </button>
+                                <button type="button" class="xsx-page-num active" data-page="1">1</button>
+                                <button type="button" class="xsx-page-num" data-page="2">2</button>
+                                <button type="button" class="xsx-page-num" data-page="3">3</button>
+                                <button type="button" class="xsx-page-num" data-page="4">4</button>
+                                <button type="button" class="xsx-page-num" data-page="5">5</button>
+                                <span class="xsx-page-ellipsis">...</span>
+                                <button type="button" class="xsx-page-num" data-page="92">92</button>
+                                <button type="button" class="xsx-page-num" data-page="93">93</button>
+                                <button type="button" class="xsx-page-btn xsx-page-next" id="btnXsxTopicNext" title="下一页">
+                                    <i data-lucide="chevron-right" class="xsx-page-arrow-icon"></i>
+                                </button>
+                                <span class="xsx-page-total">共 93 页</span>
+                            </div>
+                        </div>
+
+                       
+                    </section>
+                </div>
             </div>
         </main>
 

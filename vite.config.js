@@ -1,15 +1,16 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+  base: './',
   // 以项目根目录为根，register.html 在根目录下直接访问
   root: '.',
   server: {
     host: '0.0.0.0',
-    port: 5173,
+    port: 3000,
   },
   preview: {
     host: '0.0.0.0',
-    port: 5173,
+    port: 3000,
   },
   build: {
     outDir: 'dist',
@@ -24,6 +25,7 @@ export default defineConfig({
         login: 'login.html',
         'forget-password': 'forget-password.html',
         'my-courses': 'my-courses.html',
+        'homework-review': 'homework-review.html',
       },
     },
   },
