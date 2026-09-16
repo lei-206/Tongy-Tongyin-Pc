@@ -8001,3 +8001,498 @@ div.swal2-container .pth-test-window-popup button.swal2-close {
         gap: 8px;
     }
 }
+
+// ==================== 语言素养：普通话小测专属卡片与两级弹窗（严格根据图1、图2还原） ====================
+
+// 1. 语言素养学习内容下方的小测操作栏（仅显示“普通话小测”按钮）
+.language-quiz-action-bar {
+    margin-top: 26px;
+    padding-top: 20px;
+    border-top: 1px dashed $border-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .btn-open-language-quiz {
+        background: linear-gradient(135deg, #00bd98 0%, #00a86b 100%);
+        color: #ffffff;
+        border: none;
+        border-radius: 24px;
+        padding: 12px 38px;
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        cursor: pointer;
+        box-shadow: 0 6px 18px rgba(0, 168, 107, 0.26);
+        transition: all 0.25s ease;
+        user-select: none;
+
+        .quiz-btn-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        &:hover {
+            opacity: 0.96;
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 24px rgba(0, 168, 107, 0.36);
+        }
+
+        &:active {
+            transform: translateY(1px);
+        }
+    }
+}
+
+// 2. 图1：普通话小测弹窗样式
+.pth-quiz-dialog-popup {
+    width: 740px !important;
+    max-width: calc(100vw - 32px) !important;
+    background: #ffffff !important;
+    border-radius: 16px !important;
+    padding: 26px 36px !important;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.22) !important;
+    position: relative !important;
+    font-family: $font-family !important;
+    box-sizing: border-box !important;
+
+    > button.swal2-close,
+    button.swal2-close,
+    .swal2-close {
+        display: none !important;
+    }
+
+    .swal2-html-container {
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: visible !important;
+        text-align: left !important;
+    }
+
+    .pth-quiz-dialog-wrap {
+        position: relative;
+
+        .pth-quiz-dialog-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #f1f5f9;
+
+            .header-title-box {
+                display: flex;
+                align-items: baseline;
+                gap: 12px;
+
+                .header-main-title {
+                    font-size: 22px;
+                    font-weight: 700;
+                    color: #1e293b;
+                    margin: 0;
+                    letter-spacing: 0.5px;
+                }
+
+                .header-sub-desc {
+                    font-size: 14px;
+                    color: #64748b;
+                    font-weight: 400;
+                }
+            }
+
+            .btn-close-dialog {
+                background: transparent;
+                border: none;
+                font-size: 26px;
+                line-height: 1;
+                color: #64748b;
+                cursor: pointer;
+                padding: 0 4px;
+                transition: all 0.15s ease;
+
+                &:hover {
+                    color: #0f172a;
+                    transform: scale(1.1);
+                }
+            }
+        }
+
+        // 短文文本展示框
+        .pth-quiz-passage-box {
+            margin: 20px 0 24px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 18px 22px;
+
+            .pth-passage-text {
+                font-size: 15px;
+                color: #334155;
+                line-height: 1.8;
+                margin: 0;
+                text-align: justify;
+                letter-spacing: 0.2px;
+            }
+        }
+
+        // 按钮操作行（按住并录制 / 或 / 上传文件，严格按照用户截图金橙色胶囊按钮风格）
+        .pth-quiz-hw-actions-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 22px;
+
+            .btn-hw-action {
+                border: none;
+                background: transparent;
+                cursor: pointer;
+                padding: 0;
+                outline: none;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                transition: all 0.2s ease;
+                user-select: none;
+
+                .btn-hw-img {
+                    height: 56px;
+                    width: auto;
+                    display: block;
+                    pointer-events: none;
+                    transition: all 0.2s ease;
+                }
+
+                &:hover:not(.is-recording) {
+                    transform: translateY(-2px);
+
+                    .btn-hw-img {
+                        filter: drop-shadow(0 6px 16px rgba(255, 131, 20, 0.45));
+                    }
+                }
+
+                &:active:not(.is-recording) {
+                    transform: translateY(1px);
+                }
+
+                // 录音效果覆盖层
+                &.is-recording {
+                    transform: scale(0.98);
+
+                    .btn-hw-img {
+                        opacity: 0;
+                    }
+
+                    .btn-rec-hud {
+                        display: flex !important;
+                    }
+                }
+
+                .btn-rec-hud {
+                    position: absolute;
+                    inset: 0;
+                    border-radius: 32px;
+                    background: linear-gradient(180deg, #ffd152 0%, #ff9e00 50%, #f57c00 100%);
+                    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 0 0 3px rgba(255, 160, 0, 0.4), 0 4px 15px rgba(245, 124, 0, 0.45);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 12px;
+                    padding: 0 24px;
+                    z-index: 5;
+
+                    .rec-dot-red {
+                        width: 12px;
+                        height: 12px;
+                        border-radius: 50%;
+                        background: #ff334b;
+                        box-shadow: 0 0 10px #ff334b;
+                        animation: recDotBlink 0.9s infinite alternate;
+                        flex-shrink: 0;
+                    }
+
+                    .rec-text-status {
+                        font-size: 16px;
+                        font-weight: 700;
+                        color: #ffffff;
+                        text-shadow: 0 1px 2px rgba(180, 70, 0, 0.7);
+                        white-space: nowrap;
+
+                        .rec-timer-num {
+                            font-family: monospace, sans-serif;
+                            font-size: 17px;
+                            margin-left: 6px;
+                            color: #fff9e6;
+                        }
+                    }
+
+                    .rec-sound-waves {
+                        display: flex;
+                        align-items: center;
+                        gap: 3px;
+                        height: 20px;
+
+                        span {
+                            display: block;
+                            width: 3.5px;
+                            background: #ffffff;
+                            border-radius: 2px;
+                            height: 5px;
+                            box-shadow: 0 1px 2px rgba(180, 70, 0, 0.4);
+                            animation: recBarBounce 0.75s infinite ease-in-out;
+
+                            &:nth-child(1) { animation-delay: 0s; }
+                            &:nth-child(2) { animation-delay: 0.15s; }
+                            &:nth-child(3) { animation-delay: 0.3s; }
+                            &:nth-child(4) { animation-delay: 0.45s; }
+                            &:nth-child(5) { animation-delay: 0.2s; }
+                        }
+                    }
+                }
+            }
+
+            .hw-submit-or {
+                font-size: 16px;
+                color: #475569;
+                font-weight: 600;
+                user-select: none;
+            }
+        }
+
+        // 下方两列提示信息行（严格按照用户截图立体橙黄色提示图 icon-tips.png）
+        .pth-quiz-hw-tips-row {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 48px;
+            padding-top: 4px;
+
+            .hw-tip-item {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+
+                .hw-tip-icon {
+                    width: 28px;
+                    height: auto;
+                    object-fit: contain;
+                    flex-shrink: 0;
+                }
+
+                .hw-tip-text {
+                    font-size: 13px;
+                    color: #475569;
+                    line-height: 1.45;
+                    text-align: left;
+                }
+            }
+        }
+    }
+}
+
+// 3. 图2：普通话小测得分弹窗样式
+.pth-score-dialog-popup {
+    width: 620px !important;
+    max-width: calc(100vw - 32px) !important;
+    background: #ffffff !important;
+    border-radius: 14px !important;
+    padding: 24px 28px 20px !important;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2) !important;
+    position: relative !important;
+    font-family: $font-family !important;
+    box-sizing: border-box !important;
+
+    > button.swal2-close,
+    button.swal2-close,
+    .swal2-close {
+        display: none !important;
+    }
+
+    .swal2-html-container {
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: visible !important;
+        text-align: left !important;
+    }
+
+    .pth-score-dialog-wrap {
+        position: relative;
+
+        .pth-score-dialog-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #f1f5f9;
+
+            .header-main-title {
+                font-size: 22px;
+                font-weight: 700;
+                color: #1e293b;
+                margin: 0;
+            }
+
+            .btn-close-dialog {
+                background: transparent;
+                border: none;
+                font-size: 26px;
+                line-height: 1;
+                color: #64748b;
+                cursor: pointer;
+                padding: 0 4px;
+                transition: all 0.15s ease;
+
+                &:hover {
+                    color: #0f172a;
+                    transform: scale(1.1);
+                }
+            }
+        }
+
+        // 四维得分表格（根据图2复刻浅蓝表头）
+        .pth-score-table-wrap {
+            margin: 20px 0 16px;
+
+            .pth-score-dim-table {
+                width: 100%;
+                border-collapse: collapse;
+                table-layout: fixed;
+
+                thead {
+                    tr {
+                        background: #d8f5e7; /* 与平台主色调保持一致的淡清雅翠绿 */
+
+                        th {
+                            padding: 12px 0;
+                            text-align: center;
+                            font-size: 15px;
+                            font-weight: 700;
+                            color: #065f46; /* 深墨翠绿，与主色调完美契合 */
+
+                            &:first-child {
+                                border-top-left-radius: 6px;
+                                border-bottom-left-radius: 6px;
+                            }
+
+                            &:last-child {
+                                border-top-right-radius: 6px;
+                                border-bottom-right-radius: 6px;
+                            }
+                        }
+                    }
+                }
+
+                tbody {
+                    tr {
+                        td {
+                            padding: 14px 0;
+                            text-align: center;
+                            font-size: 16px;
+                            font-weight: 600;
+                            color: #1e293b;
+                            border-bottom: 1px solid #d0e8dd;
+                        }
+                    }
+                }
+            }
+        }
+
+        // 总分与AI说明
+        .pth-total-score-box {
+            text-align: center;
+            padding: 16px 0 8px;
+
+            .total-score-row {
+                display: flex;
+                align-items: baseline;
+                justify-content: center;
+                gap: 4px;
+
+                .total-label {
+                    font-size: 22px;
+                    font-weight: 700;
+                    color: #1e293b;
+                }
+
+                .total-value {
+                    font-size: 38px;
+                    font-weight: 900;
+                    color: #e11d48; /* 醒目大红 */
+                    line-height: 1;
+                }
+            }
+
+            .score-sub-tip {
+                font-size: 13px;
+                color: #64748b;
+                margin-top: 6px;
+            }
+
+            // 科大讯飞合作提供圆角胶囊（使用项目内置 logo-kdxs.png）
+            .iflytek-provider-capsule {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                margin-top: 14px;
+                background: #f0faf5;
+                border: 1px solid #d0e8dd;
+                border-radius: 20px;
+                padding: 4px 18px;
+                font-size: 13px;
+                color: #475569;
+
+                .iflytek-logo-img {
+                    height: 22px;
+                    width: auto;
+                    display: inline-block;
+                    vertical-align: middle;
+                    object-fit: contain;
+                }
+            }
+        }
+
+        // 底部右下角关闭按钮
+        .pth-score-dialog-footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 16px;
+            padding-top: 10px;
+
+            .btn-quiz-score-close {
+                background: #ffffff;
+                color: #334155;
+                border: 1px solid #cbd5e1;
+                border-radius: 6px;
+                padding: 6px 22px;
+                font-size: 14px;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.2s ease;
+
+                &:hover {
+                    background: #f8fafc;
+                    border-color: #94a3b8;
+                    color: #0f172a;
+                }
+
+                &:active {
+                    transform: translateY(1px);
+                }
+            }
+        }
+    }
+}
+
+@keyframes quizPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.8); }
+}
+
+@keyframes quizWave {
+    0%, 100% { transform: scaleY(0.4); }
+    50% { transform: scaleY(1); }
+}

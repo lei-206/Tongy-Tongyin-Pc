@@ -17,6 +17,7 @@ import btnRecording from './img/btn-recording.png';
 import btnRecordingRepeat from './img/btn-recording-repeat.png';
 import btnUpload from './img/btn-upload.png';
 import btnUploadRepeat from './img/btn-upload-repeat.png';
+import logoKdxs from './img/logo-kdxs.png';
 
 // 初始化 Lucide 图标库
 function renderLucideIcons(root) {
@@ -784,6 +785,268 @@ function renderLucideIcons(root) {
         });
     }
 
+    // ==================== 普通话小测模态窗系列（严格按照图1与图2还原） ====================
+
+    // 打开图1：普通话小测主窗口
+    function openLanguagePracticeModal() {
+        var isRecording = false;
+        var recTimer = null;
+        var recSeconds = 0;
+        var pressStartTime = 0;
+        var finishTimeout = null;
+
+        var samplePassage = '我们家的后园有半亩空地。母亲说：“让它荒着怪可惜的，你们那么爱吃花生，就开辟出来种花生吧。”我们姐弟几个都很高兴，买种、翻地、播种、浇水，没过几个月，居然收获了！母亲说：“今晚我们过一个收获节，请你们的父亲也来尝尝我们的新花生，好不好？”父亲说：“花生的用处固然很多，但有一样是很可贵的。这小小的豆子虽然不起眼，可是结的果实埋在泥土里，不炫耀自己，默默为人们做贡献。”父亲接下去说：“所以你们要像花生，它虽然不好看，可是很有用。”我说：“那么，人要做有用的人，不要做只讲体面，而对别人没有好处的人。”';
+
+        var modalHtml = 
+            '<div class="pth-quiz-dialog-wrap">' +
+            '  <!-- 弹窗顶部标题栏 -->' +
+            '  <div class="pth-quiz-dialog-header">' +
+            '    <div class="header-title-box">' +
+            '      <h3 class="header-main-title">普通话小测</h3>' +
+            '      <span class="header-sub-desc">按需自由测试（不限次数，不强制完成）</span>' +
+            '    </div>' +
+            '    <button type="button" class="btn-close-dialog" id="btnCloseQuickQuiz" aria-label="关闭">&times;</button>' +
+            '  </div>' +
+            '  <!-- 测试短文展示框 -->' +
+            '  <div class="pth-quiz-passage-box">' +
+            '    <p class="pth-passage-text">' + samplePassage + '</p>' +
+            '  </div>' +
+            '  <!-- 操作按钮行（按住并朗读 / 或 / 上传文件，严格采用金橙色水晶胶囊按钮风格） -->' +
+            '  <div class="pth-quiz-hw-actions-row">' +
+            '    <button type="button" class="btn-hw-action" id="btnQuizRecord" title="按住并朗读" data-state="initial">' +
+            '      <img src="' + btnReading + '" alt="按住并朗读" class="btn-hw-img" id="imgBtnQuizRecord">' +
+            '      <!-- 按钮上的录音特效 HUD -->' +
+            '      <div class="btn-rec-hud" id="quizRecHud" style="display: none;">' +
+            '        <span class="rec-dot-red"></span>' +
+            '        <span class="rec-text-status">录音中 <strong class="rec-timer-num" id="quizRecTimer">00:01</strong></span>' +
+            '        <div class="rec-sound-waves">' +
+            '          <span></span><span></span><span></span><span></span><span></span>' +
+            '        </div>' +
+            '      </div>' +
+            '    </button>' +
+            '    <span class="hw-submit-or">或</span>' +
+            '    <button type="button" class="btn-hw-action" id="btnQuizUpload" title="上传文件" data-state="initial">' +
+            '      <img src="' + btnUpload + '" alt="上传文件" class="btn-hw-img" id="imgBtnQuizUpload">' +
+            '    </button>' +
+            '    <input type="file" id="quizAudioFileInput" accept=".mp3,.wav,.m4a,.aac,audio/*" style="display: none;">' +
+            '  </div>' +
+            '  <!-- 下方两列提示信息行（严格使用原版立体水晶感叹号切图 icon-tips.png） -->' +
+            '  <div class="pth-quiz-hw-tips-row">' +
+            '    <div class="hw-tip-item">' +
+            '      <img src="' + iconTips + '" alt="提示" class="hw-tip-icon">' +
+            '      <span class="hw-tip-text">需要有麦克风并授权<br>录音才可进行朗读</span>' +
+            '    </div>' +
+            '    <div class="hw-tip-item">' +
+            '      <img src="' + iconTips + '" alt="提示" class="hw-tip-icon">' +
+            '      <span class="hw-tip-text">如您的设备没有麦克风，<br>请直接上传MP3格式文件</span>' +
+            '    </div>' +
+            '  </div>' +
+            '</div>';
+
+        Swal.fire({
+            html: modalHtml,
+            showConfirmButton: false,
+            showCloseButton: false,
+            allowOutsideClick: true,
+            customClass: {
+                popup: 'pth-quiz-dialog-popup'
+            },
+            didOpen: function () {
+                var $popup = $(Swal.getPopup());
+                $popup.find('> button.swal2-close, button.swal2-close').not('#btnCloseQuickQuiz').remove();
+
+                function formatTime(s) {
+                    var m = Math.floor(s / 60);
+                    var sec = s % 60;
+                    return (m < 10 ? '0' + m : m) + ':' + (sec < 10 ? '0' + sec : sec);
+                }
+
+                // 开始录音
+                function startRecording() {
+                    if (isRecording) return;
+                    isRecording = true;
+                    pressStartTime = Date.now();
+                    recSeconds = 1;
+
+                    var $btn = $popup.find('#btnQuizRecord');
+                    $btn.addClass('is-recording');
+                    $popup.find('#quizRecordBtnText').hide();
+                    $popup.find('#quizRecTimer').text('00:01');
+                    $popup.find('#quizRecHud').show();
+
+                    if (recTimer) clearInterval(recTimer);
+                    recTimer = setInterval(function () {
+                        recSeconds++;
+                        $popup.find('#quizRecTimer').text(formatTime(recSeconds));
+                    }, 1000);
+                }
+
+                // 结束录音并转到图2（普通话小测得分）
+                function finishRecordingAndEvaluate() {
+                    if (!isRecording) return;
+                    isRecording = false;
+                    if (recTimer) {
+                        clearInterval(recTimer);
+                        recTimer = null;
+                    }
+                    $(document).off('mouseup.quickRec touchend.quickRec');
+
+                    var $btn = $popup.find('#btnQuizRecord');
+                    $btn.removeClass('is-recording');
+                    $popup.find('#quizRecHud').hide();
+                    $popup.find('#quizRecordBtnText').text('朗读完成，评测中...').show();
+
+                    // 500ms 轻量反馈后打开图2得分弹窗
+                    setTimeout(function () {
+                        openLanguageScoreModal({
+                            fluency: 20,
+                            completeness: 20,
+                            phoneme: 20,
+                            tone: 20,
+                            total: 80
+                        });
+                    }, 500);
+                }
+
+                // 关闭按钮
+                $popup.on('click', '#btnCloseQuickQuiz', function () {
+                    if (recTimer) clearInterval(recTimer);
+                    $(document).off('mouseup.quickRec touchend.quickRec');
+                    Swal.close();
+                });
+
+                // 按住鼠标 / 触控开始录音
+                $popup.on('mousedown touchstart', '#btnQuizRecord', function (e) {
+                    e.preventDefault();
+                    if (finishTimeout) {
+                        clearTimeout(finishTimeout);
+                        finishTimeout = null;
+                    }
+                    startRecording();
+                });
+
+                // 鼠标松开结束录音
+                $(document).off('mouseup.quickRec touchend.quickRec').on('mouseup.quickRec touchend.quickRec', function () {
+                    if (!isRecording) return;
+                    var heldMs = Date.now() - pressStartTime;
+                    if (heldMs < 500) {
+                        finishTimeout = setTimeout(function () {
+                            finishRecordingAndEvaluate();
+                        }, 800);
+                    } else {
+                        finishRecordingAndEvaluate();
+                    }
+                });
+
+                // 点击上传文件
+                $popup.on('click', '#btnQuizUpload', function (e) {
+                    e.preventDefault();
+                    $popup.find('#quizAudioFileInput').click();
+                });
+
+                $popup.on('change', '#quizAudioFileInput', function () {
+                    var file = this.files && this.files[0];
+                    if (file) {
+                        $(document).off('mouseup.quickRec touchend.quickRec');
+                        if (recTimer) clearInterval(recTimer);
+                        $popup.find('#btnQuizUpload .btn-quiz-text').text('正在上传评测...');
+
+                        setTimeout(function () {
+                            openLanguageScoreModal({
+                                fluency: 20,
+                                completeness: 20,
+                                phoneme: 20,
+                                tone: 20,
+                                total: 80
+                            });
+                        }, 500);
+                    }
+                });
+            },
+            willClose: function () {
+                $(document).off('mouseup.quickRec touchend.quickRec');
+                if (recTimer) clearInterval(recTimer);
+            }
+        });
+    }
+
+    // 打开图2：普通话小测得分窗口
+    function openLanguageScoreModal(data) {
+        data = data || {
+            fluency: 20,
+            completeness: 20,
+            phoneme: 20,
+            tone: 20,
+            total: 80
+        };
+
+        var scoreModalHtml = 
+            '<div class="pth-score-dialog-wrap">' +
+            '  <!-- 弹窗顶部标题栏 -->' +
+            '  <div class="pth-score-dialog-header">' +
+            '    <h3 class="header-main-title">普通话小测得分</h3>' +
+            '    <button type="button" class="btn-close-dialog" id="btnCloseScoreModal" aria-label="关闭">&times;</button>' +
+            '  </div>' +
+            '  <!-- 四维评分表格（浅天蓝底表头） -->' +
+            '  <div class="pth-score-table-wrap">' +
+            '    <table class="pth-score-dim-table">' +
+            '      <thead>' +
+            '        <tr>' +
+            '          <th>流畅度分</th>' +
+            '          <th>完整度分</th>' +
+            '          <th>声韵分</th>' +
+            '          <th>调型分</th>' +
+            '        </tr>' +
+            '      </thead>' +
+            '      <tbody>' +
+            '        <tr>' +
+            '          <td>' + data.fluency + '</td>' +
+            '          <td>' + data.completeness + '</td>' +
+            '          <td>' + data.phoneme + '</td>' +
+            '          <td>' + data.tone + '</td>' +
+            '        </tr>' +
+            '      </tbody>' +
+            '    </table>' +
+            '  </div>' +
+            '  <!-- 总分展示区 -->' +
+            '  <div class="pth-total-score-box">' +
+            '    <div class="total-score-row">' +
+            '      <span class="total-label">总分：</span>' +
+            '      <span class="total-value">' + data.total + '分</span>' +
+            '    </div>' +
+            '    <div class="score-sub-tip">分数由AI自动评测，仅供参考</div>' +
+            '    <!-- 科大讯飞合作提供圆角胶囊 -->' +
+            '    <div class="iflytek-provider-capsule">' +
+            '      <span class="provider-prefix">评测能力由</span>' +
+            '      <img src="' + logoKdxs + '" alt="科大讯飞" class="iflytek-logo-img">' +
+            '      <span class="provider-suffix">提供</span>' +
+            '    </div>' +
+            '  </div>' +
+            '  <!-- 底部关闭按钮（右下角） -->' +
+            '  <div class="pth-score-dialog-footer">' +
+            '    <button type="button" class="btn-quiz-score-close" id="btnConfirmCloseScore">关闭</button>' +
+            '  </div>' +
+            '</div>';
+
+        Swal.fire({
+            html: scoreModalHtml,
+            showConfirmButton: false,
+            showCloseButton: false,
+            allowOutsideClick: true,
+            customClass: {
+                popup: 'pth-score-dialog-popup'
+            },
+            didOpen: function () {
+                var $popup = $(Swal.getPopup());
+                $popup.find('> button.swal2-close, button.swal2-close').not('#btnCloseScoreModal').remove();
+
+                $popup.on('click', '#btnCloseScoreModal, #btnConfirmCloseScore', function () {
+                    Swal.close();
+                });
+            }
+        });
+    }
+
     function initCoursePage() {
         // 渲染课程页中的 Lucide 图标
         renderLucideIcons();
@@ -1099,6 +1362,7 @@ function renderLucideIcons(root) {
                 // 切换至“资源保障”专属列表
                 $articleCard.hide();
                 $electiveTip.hide();
+                $('#languageQuizActionBar').hide();
                 $supportCard.stop(true, true).fadeIn(200, function () {
                     renderLucideIcons($supportCard[0]);
                 });
@@ -1114,6 +1378,15 @@ function renderLucideIcons(root) {
                     });
                 } else {
                     $electiveTip.stop(true, true).fadeOut(150);
+                }
+
+                if (type === 'language') {
+                    // “语言素养”展示普通话小测专属操作区
+                    $('#languageQuizActionBar').stop(true, true).slideDown(220, function () {
+                        renderLucideIcons($('#languageQuizActionBar')[0]);
+                    });
+                } else {
+                    $('#languageQuizActionBar').stop(true, true).slideUp(180);
                 }
             }
         });
@@ -1599,6 +1872,19 @@ function renderLucideIcons(root) {
             e.preventDefault();
             window.location.href = 'login.html';
         });
+
+        // 普通话小测触发按钮（语言素养内容下方）
+        $(document).off('click', '#btnOpenLanguageQuiz').on('click', '#btnOpenLanguageQuiz', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            openLanguagePracticeModal();
+        });
+
+        // 页面初始化时若当前激活标签为语言素养，则显示小测操作栏
+        if ($('.resource-categories .category-item.active').data('type') === 'language') {
+            $('#languageQuizActionBar').show();
+            renderLucideIcons($('#languageQuizActionBar')[0]);
+        }
     }
 
     // ==================== 课程学习首次进入页交互 ====================
